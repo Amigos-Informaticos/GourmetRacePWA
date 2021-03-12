@@ -40,10 +40,6 @@
 	margin-bottom: auto;
 }
 
-.textField::placeholder {
-	color: white;
-}
-
 #buttonSection {
 	position: absolute;
 	margin-top: 10%;

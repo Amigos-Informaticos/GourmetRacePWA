@@ -24,6 +24,10 @@
 	min-width: 300px;
 }
 
+.textField::placeholder {
+	color: white;
+}
+
 .textField:focus {
 	border-bottom: solid 2px #1e74f5;
 }
