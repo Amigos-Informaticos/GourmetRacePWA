@@ -1,6 +1,6 @@
-self.addEventListener("install", listenerObject => {
+self.addEventListener("install", (listenerObject) => {
 	listenerObject.waitUntil(
-		caches.open("static").then(cache => {
+		caches.open("static").then((cache) => {
 			return cache.addAll([
 				"./",
 				"./src/css/main.css",
@@ -10,9 +10,9 @@ self.addEventListener("install", listenerObject => {
 	);
 });
 
-self.addEventListener("fetch", e => {
+self.addEventListener("fetch", (e) => {
 	e.respondWith(
-		caches.match(e.request).then(response => {
+		caches.match(e.request).then((response) => {
 			return response || fetch(e.request);
 		})
 	);
