@@ -40,20 +40,6 @@
 	margin-bottom: auto;
 }
 
-.textField {
-	background: transparent;
-	border-bottom: solid 2px white;
-	color: white;
-	font-weight: bold;
-	width: 30%;
-	min-width: 300px;
-	margin: 20px auto;
-}
-
-.textField:focus {
-	border-bottom: solid 2px #1e74f5;
-}
-
 .textField::placeholder {
 	color: white;
 }
@@ -63,11 +49,4 @@
 	margin-top: 10%;
 	height: 50%;
 	width: 100%;
-}
-
-.button {
-	font-weight: bold;
-	max-width: 500px;
-	min-width: 300px;
-	margin: 20px auto;
 }

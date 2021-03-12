@@ -5,4 +5,5 @@ function clearContent(divId) {
 function loadContent(objectiveURL, divId = "content") {
 	clearContent(divId);
 	$("#" + divId).load(objectiveURL);
+	console.clear();
 }

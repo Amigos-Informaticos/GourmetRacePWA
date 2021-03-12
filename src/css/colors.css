@@ -3,17 +3,26 @@
 	color: #ff6c1d;
 }
 
-.orange {
+.invertWhite:hover {
 	background-color: #ff6c1d;
 	color: white;
 }
 
-.invertWhite:hover {
+.whiteTxt {
+	color: white;
+}
+
+.orange {
 	background-color: #ff6c1d;
 	color: white;
 }
 
 .invertOrange:hover {
 	background-color: white;
+	color: #ff6c1d;
+}
+
+
+.orangeTxt {
 	color: #ff6c1d;
 }

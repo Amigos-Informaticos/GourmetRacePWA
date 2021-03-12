@@ -1,7 +1,7 @@
 .normalInput {
 	border: none;
 	border-radius: 2px;
-	font-family: "DejaVu Sans";
+	font-family: "DejaVu Sans", serif;
 	height: 2em;
 	display: block;
 	transition: 0.5s;
@@ -10,4 +10,27 @@
 .normalInput:focus {
 	outline: none;
 	transition: 0.5s;
+}
+
+.underlinedTextField {
+	background: transparent;
+	border-bottom: solid 2px white;
+}
+
+.textField {
+	font-weight: bold;
+	margin: 20px auto;
+	width: 30%;
+	min-width: 300px;
+}
+
+.textField:focus {
+	border-bottom: solid 2px #1e74f5;
+}
+
+.button {
+	font-weight: bold;
+	max-width: 500px;
+	min-width: 300px;
+	margin: 20px auto;
 }
