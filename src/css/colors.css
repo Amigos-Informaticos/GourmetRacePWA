@@ -1,0 +1,19 @@
+.white {
+	background-color: white;
+	color: #ff6c1d;
+}
+
+.orange {
+	background-color: #ff6c1d;
+	color: white;
+}
+
+.invertWhite:hover {
+	background-color: #ff6c1d;
+	color: white;
+}
+
+.invertOrange:hover {
+	background-color: white;
+	color: #ff6c1d;
+}
