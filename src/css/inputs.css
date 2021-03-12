@@ -1,0 +1,11 @@
+.textField {
+    border: none;
+    border-radius: 2px;
+    height: 2em;
+    font-family: "DejaVu Sans";
+    display: block;
+}
+
+.textField:focus {
+    outline: none;
+}
