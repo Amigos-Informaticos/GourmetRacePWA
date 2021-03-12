@@ -1,11 +1,22 @@
+.normalInput {
+	border: none;
+	border-radius: 2px;
+	font-family: "DejaVu Sans";
+	height: 2em;
+	display: block;
+	transition: 0.5s;
+}
+
+.normalInput:focus {
+	outline: none;
+	transition: 0.5s;
+}
+
 .textField {
-    border: none;
-    border-radius: 2px;
-    height: 2em;
-    font-family: "DejaVu Sans";
-    display: block;
 }
 
 .textField:focus {
-    outline: none;
+}
+
+.button {
 }

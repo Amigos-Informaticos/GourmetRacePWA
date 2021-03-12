@@ -1,12 +1,23 @@
+<link rel="stylesheet" href="src/css/login.css">
 <div id="login">
-	<link rel="stylesheet" href="src/css/login.css">
 	<div id="topHalf">
 		<img src="images/fullLogo.png" id="fullLogo" alt="GourmetRace"/>
 	</div>
 	<div id="bottomHalf">
-		<form id="login_form" action="">
-			<input type="text" id="emailInput" class="textField" name="emailInput" placeholder="Email"/>
-			<input type="text" id="passwordInput" class="textField" name="passwordInput" placeholder="Contraseña"/>
-		</form>
+		<div id="verticalCenter">
+			<form id="login_form" action="">
+				<input type="text" id="emailInput" class="normalInput textField" name="emailInput"
+					   placeholder="Email"/>
+				<input type="text" id="passwordInput" class="normalInput textField"
+					   name="passwordInput"
+					   placeholder="Contraseña"/>
+			</form>
+		</div>
+		<div id="buttonSection">
+			<input type="button" class="normalInput white invertWhite button" id="loginButton"
+				   value="Iniciar Sesión">
+			<input type="button" class="normalInput orange invertOrange button" id="registerButton"
+				   value="Registrarse">
+		</div>
 	</div>
 </div>
