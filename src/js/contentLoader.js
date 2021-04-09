@@ -4,13 +4,20 @@ function clearContent(divId) {
 
 function loadContent(objectiveURL, targetId = "content") {
 	clearContent(targetId);
-	localStorage.setItem("activePage", objectiveURL);
+	localStorage.setItem("currentPage", objectiveURL);
 	$("#" + targetId).load(objectiveURL);
 	console.clear();
 }
 
+function savePage() {
+	localStorage.setItem(
+		"lastPage",
+		localStorage.getItem("currentPage")
+	);
+}
+
 function loadLastPage() {
-	let lastPage = localStorage.getItem("activePage");
+	let lastPage = localStorage.getItem("lastPage");
 	if (lastPage != null) {
 		loadContent(lastPage);
 	}
