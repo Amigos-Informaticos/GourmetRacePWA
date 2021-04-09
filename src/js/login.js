@@ -15,6 +15,6 @@ $("#loginButton").click(function () {
 		Swal.fire({
 			icon: 'success',
 			title: 'Correcto!'
-		})
+		});
 	}
 });
