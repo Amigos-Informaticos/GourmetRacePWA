@@ -29,7 +29,7 @@
 }
 
 .textField:focus {
-	border-bottom: solid 2px #1e74f5;
+	border-bottom: solid 2px var(--blue-color);
 }
 
 .button {
