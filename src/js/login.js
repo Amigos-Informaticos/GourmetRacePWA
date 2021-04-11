@@ -4,17 +4,23 @@ $("#registerButton").click(function () {
 });
 
 $("#loginButton").click(function () {
-	if ($("#emailInput").val() === "" ||
-		$("#passwordInput").val() === "") {
+	if (validateLogin()) {
+
+	} else {
 		Swal.fire({
 			icon: 'error',
 			title: 'Campos vacíos',
 			text: 'Uno o más campos se encuentran vacíos'
 		});
-	} else {
-		Swal.fire({
-			icon: 'success',
-			title: 'Correcto!'
-		});
 	}
 });
+
+function validateLogin() {
+	let email = $("#emailInput").val();
+	let password = $("#passwordInput").val();
+	return email !== "" && password !== "";
+}
+
+function login() {
+
+}
