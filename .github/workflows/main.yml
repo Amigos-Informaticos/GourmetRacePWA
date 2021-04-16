@@ -32,10 +32,7 @@ jobs:
         run: npm init -y
 
       - name: Instalar Jest
-        run: npm install --save-dev jest
-
-      - name: Ejecutar pruebas con reporte
-        run: jest --coverage
+        run: npm install --save-dev jest && jest --coverage
 
       - name: Subir reporte
         uses: actions/upload-artifact@v2
