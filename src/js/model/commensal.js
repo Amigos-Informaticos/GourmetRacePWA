@@ -28,9 +28,14 @@
     }
 
     isEmail(email){
-        return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+        return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) != null;
     }
     isPassword(password){
-        return password.match(/^(?=.*?[0-z]).{8,}$/);
+        return password.match(/^(?=.*?[0-z]).{8,}$/) != null;
     }
+}
+try{
+    module.exports = Commensal;    
+}catch (referenceError){
+    
 }
