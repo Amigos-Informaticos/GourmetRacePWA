@@ -21,9 +21,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Probando GitHub Actions CI
+      - name: Configurar Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Instalar Jest
+        run: npm install --save-dev jest
+
+      - name: Ejecutar pruebas con reporte
+        run: jest --coverage
+
+      - name: Subir reporte
+        uses: actions/upload-artifac@v2
+        with:
+          name: Jest Coverage
+          path: coverage/
