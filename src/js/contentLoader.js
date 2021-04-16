@@ -6,7 +6,6 @@ function loadContent(objectiveURL, targetId = "content") {
 	clearContent(targetId);
 	localStorage.setItem("currentPage", objectiveURL);
 	$("#" + targetId).load(objectiveURL);
-	console.clear();
 }
 
 function savePage() {
