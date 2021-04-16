@@ -23,16 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Configurar Node
+      - name: Configurar Node y ejecutar pruebas
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-
-      - name: Iniciar npm
-        run: npm init -y
-
-      - name: Instalar Jest
-        run: npm install --save-dev jest && jest --coverage
+      - run: npm init -y
+      - run: npm install --save-dev jest
+      - run: npm run test
 
       - name: Subir reporte
         uses: actions/upload-artifact@v2
