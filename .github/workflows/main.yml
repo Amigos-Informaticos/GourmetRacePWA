@@ -15,7 +15,7 @@ on:
 
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  unit-test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -27,6 +27,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+
+      - name: Iniciar npm
+        run: npm init -y
 
       - name: Instalar Jest
         run: npm install --save-dev jest
