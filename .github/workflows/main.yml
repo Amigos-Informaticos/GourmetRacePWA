@@ -15,15 +15,24 @@ on:
 
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  unit-test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Probando GitHub Actions CI
+      - name: Configurar Node y ejecutar pruebas
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm init -y
+      - run: npm install --save-dev jest
+      - run: npm run test
+
+      - name: Subir reporte
+        uses: actions/upload-artifact@v2
+        with:
+          name: Jest Coverage
+          path: coverage/

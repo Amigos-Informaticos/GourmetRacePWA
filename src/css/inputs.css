@@ -1,3 +1,8 @@
+:root {
+	--textfield-width: clamp(300px, 30%, 500px);
+	--button-width: clamp(300px, 30%, 300px);
+}
+
 .normalInput {
 	border: none;
 	border-radius: 2px;
@@ -12,6 +17,14 @@
 	transition: 0.5s;
 }
 
+.normalInput:required {
+	box-shadow: none;
+}
+
+.normalInput:invalid {
+	box-shadow: none;
+}
+
 .underlinedTextField {
 	background: transparent;
 	border-bottom: solid 2px white;
@@ -20,8 +33,7 @@
 .textField {
 	font-weight: bold;
 	margin: 20px auto;
-	width: 30%;
-	min-width: 300px;
+	width: var(--textfield-width);
 }
 
 .textField::placeholder {
@@ -29,12 +41,11 @@
 }
 
 .textField:focus {
-	border-bottom: solid 2px #1e74f5;
+	border-bottom: solid 2px var(--blue-color);
 }
 
 .button {
 	font-weight: bold;
-	max-width: 500px;
-	min-width: 300px;
+	width: var(--button-width);
 	margin: 20px auto;
 }

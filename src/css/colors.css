@@ -1,10 +1,15 @@
+:root {
+	--orange-color: #ff6c1d;
+	--blue-color: #1e74f5;
+}
+
 .white {
 	background-color: white;
-	color: #ff6c1d;
+	color: var(--orange-color);
 }
 
 .invertWhite:hover {
-	background-color: #ff6c1d;
+	background-color: var(--orange-color);
 	color: white;
 }
 
@@ -13,16 +18,16 @@
 }
 
 .orange {
-	background-color: #ff6c1d;
+	background-color: var(--orange-color);
 	color: white;
 }
 
 .invertOrange:hover {
 	background-color: white;
-	color: #ff6c1d;
+	color: var(--orange-color);
 }
 
 
 .orangeTxt {
-	color: #ff6c1d;
+	color: var(--orange-color);
 }
