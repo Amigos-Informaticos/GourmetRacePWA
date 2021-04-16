@@ -1,0 +1,43 @@
+#register {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: linear-gradient(var(--orange-color) 50%, white);
+	height: 100vh;
+	width: 100vw;
+}
+
+#firstThird {
+	position: absolute;
+	display: table;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 30vh;
+}
+
+#title {
+	font-family: "DejaVu Sans", serif;
+	font-weight: bold;
+	font-size: 3em;
+	text-align: center;
+	color: white;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#secondThird {
+	position: absolute;
+	top: 30vh;
+	left: 0;
+	width: 100vw;
+	height: 40vh;
+}
+
+#thirdThird {
+	position: absolute;
+	top: 75vh;
+	left: 0;
+	width: 100vw;
+	height: 30vh;
+}

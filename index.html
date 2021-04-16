@@ -7,21 +7,24 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#ff6c1d">
 	<title>Gourmet Race</title>
-	<link rel="stylesheet" href="src/css/main.css">
 	<link rel="manifest" href="manifest.json">
 	<link rel="apple-touch-icon" href="images/logo192.png">
-	<link rel="stylesheet" href="src/css/inputs.css">
+	<link rel="stylesheet" href="src/css/main.css">
 	<link rel="stylesheet" href="src/css/colors.css">
+	<link rel="stylesheet" href="src/css/inputs.css">
+	<link rel="icon" href="images/logo192.png" type="image/png">
 </head>
 <body>
 
 <div id="content"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
 <script src="src/js/index.js"></script>
 <script src="src/js/jQuery.js"></script>
 <script src="src/js/contentLoader.js"></script>
 <script>
 	loadContent("src/view/login.html");
+	loadLastPage();
 </script>
 
 </body>

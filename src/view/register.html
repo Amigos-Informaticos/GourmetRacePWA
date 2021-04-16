@@ -1,4 +1,28 @@
 <link rel="stylesheet" href="src/css/register.css">
+<script src="src/js/register.js"></script>
+
 <div id="register">
-<p>Hello there</p>
+	<div id="firstThird">
+		<p id="title" class="whiteTxt">Registro</p>
+	</div>
+	<div id="secondThird">
+		<form id="registerForm">
+			<input type="email" id="emailInput" name="emailInput"
+				   class="normalInput textField whiteTxt underlinedTextField"
+				   placeholder="Email" required="required">
+			<input type="password" id="passwordInput" name="passwordInput"
+				   class="normalInput textField whiteTxt underlinedTextField"
+				   placeholder="Contraseña"
+				   required="required">
+			<input type="text" id="usernameInput" name="usernameInput"
+				   class="normalInput textField whiteTxt underlinedTextField"
+				   placeholder="Nombre de usuario" required="required">
+		</form>
+	</div>
+	<div id="thirdThird">
+		<input type="button" id="registerButton" value="Registrarse"
+			   class="white invertWhite button normalInput">
+		<input type="button" id="cancelButton" value="Cancelar"
+			   class="orange invertOrange button normalInput">
+	</div>
 </div>

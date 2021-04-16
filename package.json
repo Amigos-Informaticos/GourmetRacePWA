@@ -1,0 +1,24 @@
+{
+  "name": "GourmetRacePWA",
+  "version": "1.0.0",
+  "dependencies": {},
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "main": "sw.js",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amigos-Informaticos/GourmetRacePWA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amigos-Informaticos/GourmetRacePWA/issues"
+  },
+  "homepage": "https://github.com/Amigos-Informaticos/GourmetRacePWA#readme",
+  "description": ""
+}

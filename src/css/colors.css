@@ -1,19 +1,33 @@
-.white {
-	background-color: white;
-	color: #ff6c1d;
+:root {
+	--orange-color: #ff6c1d;
+	--blue-color: #1e74f5;
 }
 
-.orange {
-	background-color: #ff6c1d;
-	color: white;
+.white {
+	background-color: white;
+	color: var(--orange-color);
 }
 
 .invertWhite:hover {
-	background-color: #ff6c1d;
+	background-color: var(--orange-color);
+	color: white;
+}
+
+.whiteTxt {
+	color: white;
+}
+
+.orange {
+	background-color: var(--orange-color);
 	color: white;
 }
 
 .invertOrange:hover {
 	background-color: white;
-	color: #ff6c1d;
+	color: var(--orange-color);
+}
+
+
+.orangeTxt {
+	color: var(--orange-color);
 }

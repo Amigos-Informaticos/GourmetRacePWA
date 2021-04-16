@@ -1,7 +1,12 @@
+:root {
+	--textfield-width: clamp(300px, 30%, 500px);
+	--button-width: clamp(300px, 30%, 300px);
+}
+
 .normalInput {
 	border: none;
 	border-radius: 2px;
-	font-family: "DejaVu Sans";
+	font-family: "DejaVu Sans", serif;
 	height: 2em;
 	display: block;
 	transition: 0.5s;
@@ -10,4 +15,37 @@
 .normalInput:focus {
 	outline: none;
 	transition: 0.5s;
+}
+
+.normalInput:required {
+	box-shadow: none;
+}
+
+.normalInput:invalid {
+	box-shadow: none;
+}
+
+.underlinedTextField {
+	background: transparent;
+	border-bottom: solid 2px white;
+}
+
+.textField {
+	font-weight: bold;
+	margin: 20px auto;
+	width: var(--textfield-width);
+}
+
+.textField::placeholder {
+	color: white;
+}
+
+.textField:focus {
+	border-bottom: solid 2px var(--blue-color);
+}
+
+.button {
+	font-weight: bold;
+	width: var(--button-width);
+	margin: 20px auto;
 }
