@@ -1,6 +1,3 @@
-import {Commensal} from "./model/commensal.js";
-const Swal = require("sweetalert.js");
-
 $("#registerButton").click(function () {
 	loadContent("src/view/register.html");
 	savePage();
@@ -9,14 +6,12 @@ $("#registerButton").click(function () {
 $("#loginButton").click(function () {
 	console.log("Click login");
 	if (validateLogin()) {
-		console.log("Correcto");
 		Swal.fire({
 			icon: 'success',
 			title: 'Correcto',
 			text: ''
 		})
 	} else {
-		console.log("incorrecto");
 		Swal.fire({
 			icon: 'error',
 			title: 'Campos vacíos',

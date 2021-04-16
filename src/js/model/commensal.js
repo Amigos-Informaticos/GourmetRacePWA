@@ -1,4 +1,4 @@
-﻿export class Commensal {
+﻿class Commensal {
     email;
     password;
     
