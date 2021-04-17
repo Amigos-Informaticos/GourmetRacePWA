@@ -13,3 +13,9 @@ test("Test password", () => {
 	expect(commensal.isPassword("1234567")).not.toBe(true);
 	expect(commensal.isPassword("qwerty7")).not.toBe(true);
 });
+
+test("Test setter", () => {
+	const commensal = new Commensal();
+	commensal.email = "email@email.com";
+	expect(commensal.email).toBe("email@email.com");
+});
