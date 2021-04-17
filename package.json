@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {},
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "main": "sw.js",
   "devDependencies": {
