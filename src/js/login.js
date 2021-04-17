@@ -4,8 +4,13 @@ $("#registerButton").click(function () {
 });
 
 $("#loginButton").click(function () {
+	console.log("Click login");
 	if (validateLogin()) {
-
+		Swal.fire({
+			icon: 'success',
+			title: 'Correcto',
+			text: ''
+		})
 	} else {
 		Swal.fire({
 			icon: 'error',
@@ -16,9 +21,10 @@ $("#loginButton").click(function () {
 });
 
 function validateLogin() {
+	let commensal = new Commensal();
 	let email = $("#emailInput").val();
 	let password = $("#passwordInput").val();
-	return email !== "" && password !== "";
+	return commensal.isEmail(email) && commensal.isPassword(password);
 }
 
 function login() {
