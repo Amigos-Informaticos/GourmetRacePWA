@@ -4,18 +4,17 @@ $("#registerButton").click(function () {
 });
 
 $("#loginButton").click(function () {
-	console.log("Click login");
 	if (validateLogin()) {
 		Swal.fire({
 			icon: 'success',
 			title: 'Correcto',
 			text: ''
-		})
+		});
 	} else {
 		Swal.fire({
 			icon: 'error',
-			title: 'Campos vacíos',
-			text: 'Uno o más campos se encuentran vacíos'
+			title: 'Campos incorrectos',
+			text: 'Uno o más campos son incorrectos'
 		});
 	}
 });
@@ -25,8 +24,4 @@ function validateLogin() {
 	let email = $("#emailInput").val();
 	let password = $("#passwordInput").val();
 	return commensal.isEmail(email) && commensal.isPassword(password);
-}
-
-function login() {
-
 }
