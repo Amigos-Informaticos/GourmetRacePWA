@@ -16,6 +16,6 @@ test("Test password", () => {
 
 test("Test setter", () => {
 	const commensal = new Commensal();
-	commensal.email = "email@email.com";
-	expect(commensal.email).toBe("email@email.com");
+	commensal._email = "email@email.com";
+	expect(commensal._email).toBe("email@email.com");
 });
