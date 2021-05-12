@@ -1,4 +1,4 @@
-﻿export class Commensal {
+﻿class Commensal {
 	_email;
 	_password;
 
@@ -39,5 +39,5 @@
 try {
 	module.exports = Commensal;
 } catch (referenceError) {
-
+	console.log(referenceError.message);
 }

@@ -1,8 +1,5 @@
-import {Commensal} from '../model/commensal.js';
-
 $("#registerButton").click(function () {
 	loadContent("src/view/register.html");
-	savePage();
 });
 
 $("#loginButton").click(function () {
