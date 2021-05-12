@@ -1,0 +1,1 @@
+![Logotipo](images/fullLogo.png)
