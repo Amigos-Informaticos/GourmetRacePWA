@@ -54,5 +54,5 @@ jobs:
         run: |
           docker buildx build \
           --push \
-          --tag amigosinformaticos/api_gourmet_race:latest \
+          --tag amigosinformaticos/pwa_gourmet_race:latest \
           --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 .
