@@ -14,22 +14,17 @@ try {
 			this._url = value;
 		}
 
-		async get(resource) {
-			let response = await fetch(this._url + "/" + resource, {
-				method: 'GET',
-				headers: {'Content-Type': 'application/json'}
-			});
-			return await response.blob();
-		}
-
-		async post(resource, jsonPayload = {}, payback = false) {
-			return fetch(this._url + '/' + resource, {
-				method: 'post',
+		async send(method, endpoint, payload = {}, payback = false) {
+			return fetch(this.url + '/' + endpoint, {
+				method: method,
 				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify(jsonPayload)
+				body: JSON.stringify(payload)
 			}).then(response => {
 				if (payback) {
-					return response.json();
+					return {
+						json: response.json(),
+						status: response.status
+					};
 				} else {
 					return response.status;
 				}

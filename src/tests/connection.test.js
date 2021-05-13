@@ -10,13 +10,13 @@ test("Register user test", done => {
 		}
 	}
 
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("http://0.0.0.0:42066");
 	const payload = {
-		"email": "b@b.com",
+		"email": "alexisao@correo.com",
 		"password": "password",
-		"username": "username"
+		"username": "alexisaO"
 	}
-	connection.post("commensals", payload)
+	connection.send('post', "commensals", payload)
 		.then(responseStatus => {
 			callback(responseStatus);
 		});
