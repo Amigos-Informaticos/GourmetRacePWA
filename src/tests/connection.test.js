@@ -60,7 +60,10 @@ test("Get registered user test", done => {
 	}
 
 	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
-	const parameters = {"username": "alexisaO"}
+	const parameters = {
+		username: "alexisaO",
+		email: "alexisao@correo.com"
+	}
 	connection.send("get", "commensals", parameters, null)
 		.then(jsonResponse => {
 			callback(jsonResponse);

@@ -32,17 +32,10 @@ try {
 		}
 
 		buildBody(method, payload = null) {
-			let options = {};
-			if (payload == null) {
-				options = {
-					method: method,
-				}
-			} else {
-				options = {
-					method: method,
-					headers: {'Content-Type': 'application/json'},
-					body: JSON.stringify(payload)
-				}
+			let options = {method: method};
+			if (payload != null) {
+				options.headers = {'Content-Type': 'application/json'};
+				options.body = JSON.stringify(payload);
 			}
 			return options;
 		}
