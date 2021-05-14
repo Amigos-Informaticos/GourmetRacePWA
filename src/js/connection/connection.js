@@ -14,21 +14,40 @@ try {
 			this._url = value;
 		}
 
-		async send(method, endpoint, payload = {}, payback = false) {
-			return fetch(this.url + '/' + endpoint, {
+		buildParams(parameters = {}) {
+			let queryString = "";
+			let size = Object.keys(parameters).length;
+			let index = 0;
+			if (size > 0) {
+				queryString += "?";
+				for (let key in parameters) {
+					queryString += key + "=" + parameters[key];
+					if (index < size - 1) {
+						queryString += "&";
+					}
+					index++;
+				}
+			}
+			return queryString;
+		}
+
+		async send(method, endpoint, parameters = {}, payload = {}, payback = false) {
+			let queryString = this.buildParams(parameters);
+			const response = await fetch(this.url + '/' + endpoint + queryString, {
 				method: method,
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify(payload)
-			}).then(response => {
-				if (payback) {
+			});
+			if (!payback) {
+				return response.status;
+			} else {
+				return response.json().then(values => {
 					return {
-						json: response.json(),
-						status: response.status
-					};
-				} else {
-					return response.status;
-				}
-			}).catch(error => error);
+						status: response.status,
+						json: values
+					}
+				});
+			}
 		}
 	}
 
