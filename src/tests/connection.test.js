@@ -1,7 +1,7 @@
 const Connection = require("../js/connection/connection");
 
 test("Register user test", done => {
-	const expectedResponse = {
+	const expectedResponseRegister = {
 		"status": 201,
 		"json": {
 			"email": "alexisao@correo.com",
@@ -11,10 +11,15 @@ test("Register user test", done => {
 			"is_owner": false
 		}
 	}
+	const userAlreadyRegistered = {"status": 409}
 
 	function callback(data) {
 		try {
-			expect(data).toStrictEqual(expectedResponse);
+			if (data.status === 201) {
+				expect(data).toStrictEqual(expectedResponseRegister);
+			} else {
+				expect(data).toStrictEqual(userAlreadyRegistered);
+			}
 			done();
 		} catch (error) {
 			done(error);
@@ -56,7 +61,7 @@ test("Get registered user test", done => {
 
 	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
 	const parameters = {"username": "alexisaO"}
-	connection.send("get", "commensals", parameters, null, true)
+	connection.send("get", "commensals", parameters, null)
 		.then(jsonResponse => {
 			callback(jsonResponse);
 		});

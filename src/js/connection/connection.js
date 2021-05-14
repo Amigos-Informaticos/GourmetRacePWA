@@ -47,21 +47,21 @@ try {
 			return options;
 		}
 
-		async send(method, endpoint, parameters = {}, payload = null, payback = false) {
+		async send(method, endpoint, parameters = {}, payload = null) {
 			let queryString = this.buildParams(parameters);
 			let options = this.buildBody(method, payload);
 
 			const response = await fetch(this.url + '/' + endpoint + queryString, options);
-			if (!payback) {
-				return response.status;
-			} else {
-				return response.json().then(values => {
+			const contentType = response.headers.get("content-type");
+			if (contentType && contentType.indexOf("application/json") !== -1) {
+				return response.json().then(value => {
 					return {
 						status: response.status,
-						json: values
-					}
+						json: value
+					};
 				});
 			}
+			return {status: response.status};
 		}
 	}
 
