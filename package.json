@@ -5,7 +5,7 @@
     "node-fetch": "^2.6.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "main": "sw.js",
   "devDependencies": {
