@@ -32,3 +32,32 @@ test("Register user test", done => {
 			callback(jsonResponse);
 		});
 });
+
+test("Get registered user test", done => {
+	const expectedResponse = {
+		"status": 200,
+		"json": [{
+			"email": "alexisao@correo.com",
+			"password": "password",
+			"username": "alexisaO",
+			"status": true,
+			"is_owner": false
+		}]
+	}
+
+	function callback(data) {
+		try {
+			expect(data).toStrictEqual(expectedResponse);
+			done();
+		} catch (error) {
+			done(error);
+		}
+	}
+
+	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const parameters = {"username": "alexisaO"}
+	connection.send("get", "commensals", parameters, null, true)
+		.then(jsonResponse => {
+			callback(jsonResponse);
+		});
+});

@@ -31,13 +31,27 @@ try {
 			return queryString;
 		}
 
-		async send(method, endpoint, parameters = {}, payload = {}, payback = false) {
+		buildBody(method, payload = null) {
+			let options = {};
+			if (payload == null) {
+				options = {
+					method: method,
+				}
+			} else {
+				options = {
+					method: method,
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify(payload)
+				}
+			}
+			return options;
+		}
+
+		async send(method, endpoint, parameters = {}, payload = null, payback = false) {
 			let queryString = this.buildParams(parameters);
-			const response = await fetch(this.url + '/' + endpoint + queryString, {
-				method: method,
-				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify(payload)
-			});
+			let options = this.buildBody(method, payload);
+
+			const response = await fetch(this.url + '/' + endpoint + queryString, options);
 			if (!payback) {
 				return response.status;
 			} else {
