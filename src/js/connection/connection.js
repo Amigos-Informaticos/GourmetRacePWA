@@ -6,6 +6,8 @@ try {
 			this._url = url;
 		}
 
+		static token = null;
+
 		get url() {
 			return this._url;
 		}
@@ -37,14 +39,18 @@ try {
 				options.headers = {'Content-Type': 'application/json'};
 				options.body = JSON.stringify(payload);
 			}
+			if (Connection.token != null) {
+				options.Token = Connection.token;
+			}
 			return options;
 		}
 
 		async send(method, endpoint, parameters = {}, payload = null) {
 			let queryString = this.buildParams(parameters);
-			let options = this.buildBody(method, payload);
+			let header = this.buildBody(method, payload);
 
-			const response = await fetch(this.url + '/' + endpoint + queryString, options);
+			const response = await fetch(this.url + '/' + endpoint + queryString, header);
+
 			const contentType = response.headers.get("content-type");
 			if (contentType && contentType.indexOf("application/json") !== -1) {
 				return response.json().then(value => {
