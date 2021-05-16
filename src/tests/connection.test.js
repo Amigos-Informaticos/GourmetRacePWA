@@ -71,7 +71,7 @@ test("Search registered user test", done => {
 });
 
 test("Get registered user test", done => {
-	const connection = new Connection("http://0.0.0.0:42066");
+	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
 	let payload = {
 		email: "alexisao@correo.com",
 		password: "password"
