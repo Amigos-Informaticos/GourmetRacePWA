@@ -36,7 +36,7 @@ try {
 		buildBody(method, payload = null) {
 			let options = {method: method};
 			if (payload != null) {
-				options.headers["Content-Type"] = "application/json";
+				options.headers = {"Content-Type": "application/json"};
 				options.body = JSON.stringify(payload);
 			}
 			if (Connection.token != null) {
