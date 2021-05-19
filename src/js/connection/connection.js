@@ -9,11 +9,6 @@ try {
 		static token = null;
 		static keepCookies = true;
 		static cookies = null;
-		static mode = Connection.modes.JSON;
-		static modes = {
-			JSON: "application/json",
-			MULTIPART: "multipart/form-data"
-		}
 
 		get url() {
 			return this._url;
@@ -42,21 +37,21 @@ try {
 			return queryString;
 		}
 
-		buildBody(method, payload = null) {
+		buildBody(method, payload = null, isMultipart = true) {
 			let options = {
 				method: method,
 				headers: {}
 			};
 			if (payload != null) {
-				if (Connection.mode === Connection.modes.JSON) {
-					options.headers["Content-Type"] = "application/json";
-					options.body = JSON.stringify(payload);
-				} else if (Connection.mode === Connection.modes.MULTIPART) {
+				if (isMultipart) {
 					const form = new FormData();
-					options.headers["Content-Type"] = "multipart/form-data";
 					for (const key in payload) {
 						form.append(key, payload[key]);
 					}
+					options.body = form;
+				} else {
+					options.headers["Content-Type"] = "application/json";
+					options.body = JSON.stringify(payload);
 				}
 			}
 			if (Connection.token != null) {
