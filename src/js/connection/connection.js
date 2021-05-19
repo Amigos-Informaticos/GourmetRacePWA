@@ -9,6 +9,11 @@ try {
 		static token = null;
 		static keepCookies = true;
 		static cookies = null;
+		static mode = Connection.modes.JSON;
+		static modes = {
+			JSON: "application/json",
+			MULTIPART: "multipart/form-data"
+		}
 
 		get url() {
 			return this._url;
@@ -18,7 +23,7 @@ try {
 			this._url = value;
 		}
 
-		buildParams(parameters = {}) {
+		buildParams(parameters = null) {
 			let queryString = "";
 			if (parameters != null || parameters != undefined) {
 				let size = Object.keys(parameters).length;
@@ -43,8 +48,16 @@ try {
 				headers: {}
 			};
 			if (payload != null) {
-				options.headers["Content-Type"] = "application/json";
-				options.body = JSON.stringify(payload);
+				if (Connection.mode === Connection.modes.JSON) {
+					options.headers["Content-Type"] = "application/json";
+					options.body = JSON.stringify(payload);
+				} else if (Connection.mode === Connection.modes.MULTIPART) {
+					const form = new FormData();
+					options.headers["Content-Type"] = "multipart/form-data";
+					for (const key in payload) {
+						form.append(key, payload[key]);
+					}
+				}
 			}
 			if (Connection.token != null) {
 				options.headers["Token"] = Connection.token;
@@ -55,7 +68,7 @@ try {
 			return options;
 		}
 
-		async send(method, endpoint, parameters = {}, payload = null) {
+		async send(method, endpoint, parameters = null, payload = null) {
 			let queryString = this.buildParams(parameters);
 			let header = this.buildBody(method, payload);
 
