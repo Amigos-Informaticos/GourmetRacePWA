@@ -73,24 +73,33 @@ class Connection {
 		return options;
 	}
 
-	async send(method, endpoint, parameters = null, payload = null, isMultipart = false) {
-		let queryString = this.buildParams(parameters);
-		let header = this.buildBody(method, payload, isMultipart);
-		const response = await fetch(this.url + '/' + endpoint + queryString, header)
-		const contentType = response.headers.get("content-type");
-		const cookies = response.headers.get("Set-Cookie");
+	saveCookies(cookies) {
 		if (cookies && Connection.keepCookies) {
 			Connection.cookies = cookies;
 		}
+	}
+
+	buildResponse(response) {
+		const contentType = response.headers.get("content-type");
+		this.saveCookies(response.headers.get("Set-Cookie"));
+		let returnValue = null;
 		if (contentType && contentType.indexOf("application/json") !== -1) {
-			return response.json().then(value => {
-				return {
+			response.json().then((value) => {
+				returnValue = {
 					status: response.status,
 					json: value
 				};
 			});
+		} else {
+			returnValue = {status: response.status};
 		}
-		return {status: response.status};
+		return returnValue;
+	}
+
+	async send(method, endpoint, parameters = null, payload = null, isMultipart = false) {
+		let queryString = this.buildParams(parameters);
+		let header = this.buildBody(method, payload, isMultipart);
+		return this.buildResponse(await fetch(this.url + "/" + endpoint + queryString, header));
 	}
 }
 
