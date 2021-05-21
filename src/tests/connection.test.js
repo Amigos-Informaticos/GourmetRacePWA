@@ -32,7 +32,7 @@ test("Register user test", done => {
 		"password": "password",
 		"username": "alexisaO"
 	}
-	connection.send('post', "commensals", {}, payload, true)
+	connection.send('post', "commensals", {}, payload, false)
 		.then(jsonResponse => {
 			callback(jsonResponse);
 		});
@@ -106,4 +106,17 @@ test("Get registered user test", done => {
 			done(error);
 		}
 	}
+});
+
+test("Login", done => {
+	let payload = {
+		email: "alexisao@correo.com",
+		password: "password"
+	}
+
+	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	connection.send("POST", "login", null, payload)
+		.then(response => {
+			console.log(response["json"]["id"]);
+		});
 });

@@ -1,5 +1,6 @@
 try {
 	const fetch = require("node-fetch");
+	const FormData = require("form-data");
 
 	class Connection {
 		constructor(url) {
@@ -37,7 +38,7 @@ try {
 			return queryString;
 		}
 
-		buildBody(method, payload = null, isMultipart = true) {
+		buildBody(method, payload = null, isMultipart = false) {
 			let options = {
 				method: method,
 				headers: {}
@@ -63,9 +64,9 @@ try {
 			return options;
 		}
 
-		async send(method, endpoint, parameters = null, payload = null) {
+		async send(method, endpoint, parameters = null, payload = null, isMultipart = false) {
 			let queryString = this.buildParams(parameters);
-			let header = this.buildBody(method, payload);
+			let header = this.buildBody(method, payload, isMultipart);
 
 			const response = await fetch(this.url + '/' + endpoint + queryString, header);
 
