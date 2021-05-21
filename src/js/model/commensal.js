@@ -65,19 +65,6 @@
 		this._isOwner = value;
 	}
 
-	login() {
-		const payload = {
-			"email": this._email,
-			"password": this._password,
-			"username": this._username
-		}
-		this._connection.send('post', "commensals", {}, payload, true)
-			.then(jsonResponse => {
-				callback(jsonResponse);
-			});
-
-	}
-
 	isEmail(email) {
 		return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) != null;
 	}
@@ -90,5 +77,5 @@
 try {
 	module.exports = Commensal;
 } catch (e) {
-	
+
 }
