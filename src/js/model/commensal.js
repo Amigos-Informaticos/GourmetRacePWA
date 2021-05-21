@@ -76,6 +76,6 @@
 
 try {
 	module.exports = Commensal;
-} catch (e) {
-
+} catch (error) {
+	console.log(error);
 }
