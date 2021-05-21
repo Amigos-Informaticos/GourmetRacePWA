@@ -107,16 +107,3 @@ test("Get registered user test", done => {
 		}
 	}
 });
-
-test("Login", done => {
-	let payload = {
-		email: "alexisao@correo.com",
-		password: "password"
-	}
-
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
-	connection.send("POST", "login", null, payload)
-		.then(response => {
-			console.log(response["json"]["id"]);
-		});
-});
