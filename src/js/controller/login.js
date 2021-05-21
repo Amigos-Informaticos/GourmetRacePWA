@@ -36,7 +36,7 @@ async function login(email, password) {
 		"password": password
 	}
 
-	const connection = new Connection("http://0.0.0.0:42066");
+	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
 	const respuesta = await connection.send("post", "login", null, payload);
 	if (respuesta["status"] === 200) {
 		localStorage.setItem("token", respuesta["json"]["token"]);
