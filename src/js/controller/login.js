@@ -3,6 +3,7 @@ $("#registerButton").click(function () {
 });
 
 $("#loginButton").click(function () {
+	console.log("Loga");
 	if (validateLogin()) {
 		Swal.fire({
 			icon: 'success',
@@ -17,6 +18,12 @@ $("#loginButton").click(function () {
 		});
 	}
 });
+
+async function respuesta(){
+	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const _respuesta = await connection.send("post","commensals",null,null);
+	console.log(_respuesta);
+} 
 
 function validateLogin() {
 	let commensal = new Commensal();
