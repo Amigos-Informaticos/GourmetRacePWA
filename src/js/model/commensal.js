@@ -1,43 +1,92 @@
-﻿class Commensal {
-	_email;
-	_password;
+﻿(function (exports) {
+        class Commensal {
+            _id;
+            _email;
+            _username;
+            _password;
+            _status;
+            _isOwner;
+            _connection;
 
-	constructor(email, password) {
-		this._email = email;
-		this._password = password;
-	}
+            constructor(email, username, password) {
+                this._email = email;
+                this._password = password;
+                this._username = username;
+            }
 
-	get email() {
-		return this._email;
-	}
+            get email() {
+                return this._email;
+            }
 
-	get password() {
-		return this._password;
-	}
+            get id() {
+                return this._id;
+            }
 
-	set email(email) {
-		if (this.isEmail(email)) {
-			this._email = email;
-		}
-	}
+            set id(value) {
+                this._id = value;
+            }
 
-	set password(password) {
-		if (this.isPassword(password)) {
-			this._password = password;
-		}
-	}
+            get password() {
+                return this._password;
+            }
 
-	isEmail(email) {
-		return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) != null;
-	}
+            set email(email) {
+                if (this.isEmail(email)) {
+                    this._email = email;
+                }
+            }
 
-	isPassword(password) {
-		return password.match(/^(?=.*?[0-z]).{8,}$/) != null;
-	}
-}
+            set password(password) {
+                if (this.isPassword(password)) {
+                    this._password = password;
+                }
+            }
 
-try {
-	module.exports = Commensal;
-} catch (referenceError) {
-	console.log(referenceError.message);
-}
+            get status() {
+                return this._status;
+            }
+
+            get username() {
+                return this._username;
+            }
+
+            set username(value) {
+                this._username = value;
+            }
+
+            set status(value) {
+                this._status = value;
+            }
+
+            get isOwner() {
+                return this._isOwner;
+            }
+
+            set isOwner(value) {
+                this._isOwner = value;
+            }
+
+            login() {
+                const payload = {
+                    "email": this._email,
+                    "password": this._password,
+                    "username": this._username
+                }
+                this._connection.send('post', "commensals", {}, payload, true)
+                    .then(jsonResponse => {
+                        callback(jsonResponse);
+                    });
+
+            }
+
+            isEmail(email) {
+                return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) != null;
+            }
+
+            isPassword(password) {
+                return password.match(/^(?=.*?[0-z]).{8,}$/) != null;
+            }
+        }
+        module.exports = Commensal;
+    }
+)(typeof exports === 'undefined'? this["Commensal"]={}:exports);

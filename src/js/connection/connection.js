@@ -64,7 +64,6 @@ try {
 			return {status: response.status};
 		}
 	}
-
-	module.exports = Connection;
+	
 } catch (e) {
 }
