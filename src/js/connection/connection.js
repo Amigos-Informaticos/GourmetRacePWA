@@ -24,18 +24,16 @@ class Connection {
 
 	buildParams(parameters = null) {
 		let queryString = "";
-		if (parameters != null || parameters != undefined) {
+		if (parameters != null) {
 			let size = Object.keys(parameters).length;
 			let index = 0;
-			if (size > 0) {
-				queryString += "?";
-				for (let key in parameters) {
-					queryString += key + "=" + parameters[key];
-					if (index < size - 1) {
-						queryString += "&";
-					}
-					index++;
+			queryString += "?";
+			for (let key in parameters) {
+				queryString += key + "=" + parameters[key];
+				if (index < size - 1) {
+					queryString += "&";
 				}
+				index++;
 			}
 		}
 		return queryString;
@@ -48,21 +46,29 @@ class Connection {
 		};
 		if (payload != null) {
 			if (isMultipart) {
-				const form = new FormData();
+				options.body = new FormData();
 				for (const key in payload) {
-					form.append(key, payload[key]);
+					options.body.append(key, payload[key]);
 				}
-				options.body = form;
 			} else {
 				options.headers["Content-Type"] = "application/json";
 				options.body = JSON.stringify(payload);
 			}
 		}
-		if (Connection.token != null) {
-			options.headers["Token"] = Connection.token;
-		}
+		options = this.setToken(options);
+		return this.setCookies(options);
+	}
+
+	setCookies(options) {
 		if (Connection.keepCookies && Connection.cookies != null) {
 			options.headers["Cookie"] = Connection.cookies;
+		}
+		return options;
+	}
+
+	setToken(options) {
+		if (Connection.token != null) {
+			options.headers["Token"] = Connection.token;
 		}
 		return options;
 	}
@@ -70,25 +76,21 @@ class Connection {
 	async send(method, endpoint, parameters = null, payload = null, isMultipart = false) {
 		let queryString = this.buildParams(parameters);
 		let header = this.buildBody(method, payload, isMultipart);
-		try {
-			const response = await fetch(this.url + '/' + endpoint + queryString, header)
-			const contentType = response.headers.get("content-type");
-			const cookies = response.headers.get("Set-Cookie");
-			if (cookies && Connection.keepCookies) {
-				Connection.cookies = cookies;
-			}
-			if (contentType && contentType.indexOf("application/json") !== -1) {
-				return response.json().then(value => {
-					return {
-						status: response.status,
-						json: value
-					};
-				});
-			}
-			return {status: response.status};
-		} catch (e) {
-			return {status: 0};
+		const response = await fetch(this.url + '/' + endpoint + queryString, header)
+		const contentType = response.headers.get("content-type");
+		const cookies = response.headers.get("Set-Cookie");
+		if (cookies && Connection.keepCookies) {
+			Connection.cookies = cookies;
 		}
+		if (contentType && contentType.indexOf("application/json") !== -1) {
+			return response.json().then(value => {
+				return {
+					status: response.status,
+					json: value
+				};
+			});
+		}
+		return {status: response.status};
 	}
 }
 
