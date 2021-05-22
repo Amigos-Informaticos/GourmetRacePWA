@@ -32,7 +32,7 @@ test("Register user test", done => {
 		"password": "password",
 		"username": "alexisaO"
 	}
-	connection.send('post', "commensals", {}, payload, true)
+	connection.send('post', "commensals", {}, payload, false)
 		.then(jsonResponse => {
 			callback(jsonResponse);
 		});

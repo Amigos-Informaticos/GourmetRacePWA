@@ -1,83 +1,104 @@
 try {
-	const fetch = require("node-fetch");
+	var fetch = require("node-fetch");
+	var FormData = require("form-data");
+} catch (e) {
 
-	class Connection {
-		constructor(url) {
-			this._url = url;
-		}
+}
 
-		static token = null;
-		static keepCookies = true;
-		static cookies = null;
+class Connection {
+	constructor(url) {
+		this._url = url;
+	}
 
-		get url() {
-			return this._url;
-		}
+	static token = null;
+	static keepCookies = true;
+	static cookies = null;
 
-		set url(value) {
-			this._url = value;
-		}
+	get url() {
+		return this._url;
+	}
 
-		buildParams(parameters = {}) {
-			let queryString = "";
-			if (parameters != null || parameters != undefined) {
-				let size = Object.keys(parameters).length;
-				let index = 0;
-				if (size > 0) {
-					queryString += "?";
-					for (let key in parameters) {
-						queryString += key + "=" + parameters[key];
-						if (index < size - 1) {
-							queryString += "&";
-						}
-						index++;
-					}
+	set url(value) {
+		this._url = value;
+	}
+
+	buildParams(parameters = null) {
+		let queryString = "";
+		if (parameters != null) {
+			let size = Object.keys(parameters).length;
+			let index = 0;
+			queryString += "?";
+			for (let key in parameters) {
+				queryString += key + "=" + parameters[key];
+				if (index < size - 1) {
+					queryString += "&";
 				}
+				index++;
 			}
-			return queryString;
 		}
+		return queryString;
+	}
 
-		buildBody(method, payload = null) {
-			let options = {
-				method: method,
-				headers: {}
-			};
-			if (payload != null) {
+	buildBody(method, payload = null, isMultipart = false) {
+		let options = {
+			method: method,
+			headers: {"Access-Control-Allow-Origin": "*"}
+		};
+		if (payload != null) {
+			if (isMultipart) {
+				options.body = new FormData();
+				for (const key in payload) {
+					options.body.append(key, payload[key]);
+				}
+			} else {
 				options.headers["Content-Type"] = "application/json";
 				options.body = JSON.stringify(payload);
 			}
-			if (Connection.token != null) {
-				options.headers["Token"] = Connection.token;
-			}
-			if (Connection.keepCookies && Connection.cookies != null) {
-				options.headers["Cookie"] = Connection.cookies;
-			}
-			return options;
 		}
+		options = this.setToken(options);
+		return this.setCookies(options);
+	}
 
-		async send(method, endpoint, parameters = {}, payload = null) {
-			let queryString = this.buildParams(parameters);
-			let header = this.buildBody(method, payload);
+	setCookies(options) {
+		if (Connection.keepCookies && Connection.cookies != null) {
+			options.headers["Cookie"] = Connection.cookies;
+		}
+		return options;
+	}
 
-			const response = await fetch(this.url + '/' + endpoint + queryString, header);
+	setToken(options) {
+		if (Connection.token != null) {
+			options.headers["Token"] = Connection.token;
+		}
+		return options;
+	}
 
-			const contentType = response.headers.get("content-type");
-			const cookies = response.headers.get("Set-Cookie");
-			if (cookies && Connection.keepCookies) {
-				Connection.cookies = cookies;
-			}
-			if (contentType && contentType.indexOf("application/json") !== -1) {
-				return response.json().then(value => {
-					return {
-						status: response.status,
-						json: value
-					};
-				});
-			}
-			return {status: response.status};
+	saveCookies(cookies) {
+		if (cookies && Connection.keepCookies) {
+			Connection.cookies = cookies;
 		}
 	}
 
+	async send(method, endpoint, parameters = null, payload = null, isMultipart = false) {
+		let queryString = this.buildParams(parameters);
+		let header = this.buildBody(method, payload, isMultipart);
+		const response = await fetch(this.url + "/" + endpoint + queryString, header);
+		const contentType = response.headers.get("content-type");
+		this.saveCookies(response.headers.get("Set-Cookie"));
+		if (contentType && contentType.indexOf("application/json") !== -1) {
+			return response.json().then(value => {
+				return {
+					status: response.status,
+					json: value
+				};
+			});
+		}
+		return {status: response.status};
+	}
+}
+
+try {
 	module.exports = Connection;
-} catch (e) {
+} catch (error) {
+	console.log(error);
 }

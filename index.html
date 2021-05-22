@@ -12,19 +12,38 @@
 	<link rel="stylesheet" href="src/css/main.css">
 	<link rel="stylesheet" href="src/css/colors.css">
 	<link rel="stylesheet" href="src/css/inputs.css">
+	<link rel="stylesheet" href="src/css/login.css">
 	<link rel="icon" href="images/logo192.png" type="image/png">
 </head>
 <body>
-
-<div id="content"></div>
-
+<div id="login">
+	<div id="topHalf">
+		<img src="images/fullLogoTransparent.png" id="fullLogo" alt="GourmetRace"/>
+	</div>
+	<div id="bottomHalf">
+		<div id="verticalCenter">
+			<form id="loginForm">
+				<input type="email" id="emailInput" name="emailInput"
+					   class="normalInput textField whiteTxt underlinedTextField"
+					   placeholder="Email" required="required"/>
+				<input type="password" id="passwordInput" name="passwordInput"
+					   class="normalInput textField whiteTxt underlinedTextField"
+					   placeholder="Contraseña" required="required"/>
+			</form>
+		</div>
+		<div id="buttonSection">
+			<input type="button" id="loginButton" value="Iniciar Sesión"
+				   class="normalInput white invertWhite button"/>
+			<input type="button" id="registerButton" value="Registrarse"
+				   class="normalInput orange invertOrange button"/>
+		</div>
+	</div>
+</div>
 <script src="src/js/tools/sweetalert.js"></script>
 <script src="src/js/index.js"></script>
 <script src="src/js/tools/jQuery.js"></script>
-<script src="src/js/tools/contentLoader.js"></script>
-<script>
-	loadContent("src/view/login.html");
-</script>
-
+<script src="src/js/connection/connection.js"></script>
+<script src="src/js/model/commensal.js"></script>
+<script src="src/js/controller/login.js"></script>
 </body>
 </html>

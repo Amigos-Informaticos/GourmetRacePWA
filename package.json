@@ -9,6 +9,7 @@
   },
   "main": "sw.js",
   "devDependencies": {
+    "form-data": "^4.0.0",
     "jest": "^26.6.3"
   },
   "repository": {
