@@ -1,0 +1,28 @@
+version: '3'
+services:
+  reverse-proxy:
+    image: nginx:1.17.10
+    container_name: balancer
+    depends_on:
+      - gourmet_race_api
+      - config_server
+    volumes:
+      - /home/pi/mount1/nginx:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+
+  gourmet_race_api:
+    image: amigosinformaticos/api_gourmet_race
+    container_name: gourmet_race_api
+    depends_on:
+      - config_server
+    ports:
+      - 42066:42066
+    restart: on-failure
+
+  config_server:
+    image: amigosinformaticos/configuration_server
+    container_name: config_server
+    ports:
+      - 42100:42100
+    restart: on-failure
