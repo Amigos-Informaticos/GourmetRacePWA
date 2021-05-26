@@ -13,6 +13,7 @@ class Connection {
 	static token = null;
 	static keepCookies = true;
 	static cookies = null;
+	static requiredContent = null;
 
 	get url() {
 		return this._url;
@@ -56,7 +57,16 @@ class Connection {
 			}
 		}
 		options = this.setToken(options);
+		options = this.setRequiredContent(options);
 		return this.setCookies(options);
+	}
+
+	setRequiredContent(options) {
+		if (Connection.requiredContent != null) {
+			options.headers["Required-Content"] = Connection.requiredContent;
+		}
+		Connection.requiredContent = null;
+		return options;
 	}
 
 	setCookies(options) {
