@@ -1,5 +1,10 @@
 ﻿* {
     box-sizing: border-box;
+    font-family: Roboto, Verdana;
+}
+
+body {
+    background-color: #f4f4f4;
 }
 .wrapper {
     display: flex;
@@ -12,37 +17,134 @@
     padding: 10px;
     flex: 1 100%;
 }
-.box {
-    border: 1px solid crimson;
-    background-color: moccasin;
+.box {        
+    background-color: #ffffff;
+    display:flex;
+    flex-direction:row;
+    ;
+    margin-bottom: 0.5em;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));   
 }
-.box img {
-    width: 100%;
+
+.box .box-image-container  img {
     height: auto;
 }
-.header {
-    background: tomato;
-}
 
-.footer {
-    background: lightgreen;
-}
-
-.main {
-    display: flex;
-    background: deepskyblue;
-    flex-flow: column wrap;
-    font-weight: bold;
+.box-image-container p {
     text-align: center;
 }
 
-.aside-1 {
-    background: gold;
+.box-text-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+    align-self: flex-end;
+    text-align: left;
+    margin-left: 0.5em;
+}
+.header {
+    display: flex;
+    flex-flow: row wrap;
+    background: #FF6C1D;
+    align-items: baseline;
+}
+.header h1{
+    color:#ffffff;
+}
+#gourmet-race-logo {
+    max-width: 60px;
+    max-height: 60px;
 }
 
-.aside-2 {
-    background: hotpink;
+.footer {
+    background:#FF6C1D;
 }
+
+
+.main {
+    display: flex;
+    background: #ffffff;
+    flex-flow: column wrap;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+}
+
+.aside-1 {
+    background: #C4C4C4;
+    display: flex;
+    flex-direction: column;
+}
+
+.aside-2{
+    background: #C4C4C4;      
+}
+
+.navOptions {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.navOptions li {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin: 15px;
+    padding: 15px;
+    background-color: #FF6C1D;
+    color: #ffffff;
+}
+
+li a {
+    display: block;
+    text-decoration: none white;
+    
+}
+
+.topnav {
+    overflow: hidden;
+    height: auto;
+    background-color: #e9e9e9;
+    justify-content: space-around;
+}
+
+.topnav a {
+    /*display: block;*/
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #2196F3;
+    color: white;
+}
+
+.topnav input[type=text] {    
+    padding: 6px;
+    border: none;        
+    font-size: 17px;
+}
+
+@media screen and (max-width: 600px) {
+    .topnav a, .topnav input[type=text] {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .topnav input[type=text] {
+        border: 1px solid #ccc;
+    }
+}
+
 
 @media all and (min-width: 600px) {
     .aside { flex: 1 0 0; }
