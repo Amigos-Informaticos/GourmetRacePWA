@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    font-family: Roboto, Verdana;
+}
+
+body {    
+    background: #FFFFFF url("/images/gradientLinesBackgroundOrange.jpg") no-repeat;
+    background-size: cover;
+}
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.wrapper > * {
+    padding: 10px;
+    flex: 1 100%;
+}
+
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    background: #FF6C1D;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+}
+.restaurantForm {
+    background: linear-gradient(0deg, rgba(255, 226, 192, 0.54), rgba(255, 226, 192, 0.54)), rgba(255, 255, 255, 0.45);
+    mix-blend-mode: lighten;
+    border-radius: 5px;
+}
+.restaurantHeader {
+    background: rgba(252, 153, 37, 0.69);
+    color: #FFFFFF;
+    margin-top: 0;
+    padding: 0 1em;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+#restaurantHeaderTitle {
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 0;
+}
+.restaurantBody {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#restaurantForm {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#serviceType {
+    align-self: center;
+}
+
+select::before {
+    content:'Hola'
+}
