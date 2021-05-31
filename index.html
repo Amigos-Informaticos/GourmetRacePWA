@@ -22,21 +22,22 @@
 	</div>
 	<div id="bottomHalf">
 		<div id="verticalCenter">
-			<form id="loginForm">
+			<form id="loginForm" action="" onsubmit="return false">
+				<i class="fas fa-envelope"></i>
 				<input type="email" id="emailInput" name="emailInput"
 					   class="normalInput textField whiteTxt underlinedTextField"
-					   placeholder="Email" required="required"/>
+					   placeholder="Email" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+					   required="required"/>				
 				<input type="password" id="passwordInput" name="passwordInput"
 					   class="normalInput textField whiteTxt underlinedTextField"
-					   placeholder="Contraseña" required="required"/>
-			</form>
-		</div>
-		<div id="buttonSection">
-			<input type="button" id="loginButton" value="Iniciar Sesión"
-				   class="normalInput white invertWhite button"/>
-			<input type="button" id="registerButton" value="Registrarse"
-				   class="normalInput orange invertOrange button"/>
-		</div>
+					   placeholder="Contraseña"
+					   required="required"/>					   				
+					<input type="submit" id="loginButton" value="Iniciar Sesión"
+							class="normalInput white invertWhite button"/>
+					<input type="button" id="registerButton" value="Registrarse"
+							class="normalInput orange invertOrange button"/>				
+			</form>	
+		</div>		
 	</div>
 </div>
 <script src="src/js/tools/sweetalert.js"></script>

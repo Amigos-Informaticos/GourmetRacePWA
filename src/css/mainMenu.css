@@ -27,7 +27,8 @@ body {
 }
 
 .box .box-image-container  img {
-    height: auto;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .box-image-container p {
@@ -36,17 +37,17 @@ body {
 
 .box-text-container {
     display: flex;
+    flex: 1 70%;
     flex-direction: column;
-    flex-basis: 70%;
-    align-self: flex-end;
     text-align: left;
     margin-left: 0.5em;
 }
 .header {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     background: #FF6C1D;
     align-items: baseline;
+    justify-content: space-between;
 }
 .header h1{
     color:#ffffff;
@@ -67,8 +68,10 @@ body {
     flex-flow: column wrap;
     font-weight: bold;
     text-align: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
+
+
 
 .aside-1 {
     background: #C4C4C4;
@@ -84,13 +87,19 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));    
+    color: #ffffff;
 }
 .navOptions li {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     margin: 15px;
     padding: 15px;
     background-color: #FF6C1D;
-    color: #ffffff;
+}
+
+.navOptions intput[type=text]{
+    margin: 15px;
+    padding: 15px;
+    border: inherit none;
 }
 
 li a {
@@ -102,12 +111,11 @@ li a {
 .topnav {
     overflow: hidden;
     height: auto;
-    background-color: #e9e9e9;
-    justify-content: space-around;
+    background-color: #e9e9e9;    
 }
 
 .topnav a {
-    /*display: block;*/
+    display: block;
     color: black;
     text-align: center;
     padding: 14px 16px;

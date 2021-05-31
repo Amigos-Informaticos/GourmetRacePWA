@@ -45,7 +45,7 @@ class Connection {
 			method: method,
 			headers: {"Access-Control-Allow-Origin": "*"}
 		};
-		if (payload != null) {
+		if (payload != null) {  
 			if (isMultipart) {
 				options.body = new FormData();
 				for (const key in payload) {

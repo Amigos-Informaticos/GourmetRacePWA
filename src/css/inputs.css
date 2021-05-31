@@ -18,11 +18,11 @@
 }
 
 .normalInput:required {
-	box-shadow: none;
+	box-shadow: none;	
 }
 
 .normalInput:invalid {
-	box-shadow: none;
+	box-shadow: none;	
 }
 
 .underlinedTextField {

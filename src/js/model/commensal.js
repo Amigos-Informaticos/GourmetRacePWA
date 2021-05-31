@@ -6,8 +6,8 @@
 	_status;
 	_isOwner;
 	_connection;
-
-	constructor(email, username, password) {
+	
+	constructor(email = "", username = "", password = "") {
 		this._email = email;
 		this._password = password;
 		this._username = username;
@@ -65,7 +65,7 @@
 		this._isOwner = value;
 	}
 
-	isEmail(email) {
+	isEmail(email = "") {	
 		return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) != null;
 	}
 

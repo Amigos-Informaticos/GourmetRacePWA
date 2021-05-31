@@ -1,11 +1,8 @@
 async function login(email, password) {
 	const payload = {email, password};
 	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
-	const respuesta = await connection.send("post", "login", null, payload);
-	if (respuesta["status"] === 200) {
-		localStorage.setItem("token", respuesta["json"]["token"]);
-	}
-	return respuesta["status"] === 200;
+	const response = await connection.send("post", "login", null, payload);
+	return response;
 }
 
 function validateLogin() {
@@ -16,21 +13,22 @@ function validateLogin() {
 }
 
 $("#registerButton").click(function () {
-	loadContent("src/view/register.html");
+	window.location="./src/view/register.html";
 });
 
-$("#loginButton").click(function () {
+$("#loginForm").submit(function(event) {
+	console.log("click");
 	let email = $("#emailInput").val();
 	let password = $("#passwordInput").val();
 	if (validateLogin()) {
 		login(email, password)
-			.then((success) => {
-				if (success) {
-					Swal.fire({
-						icon: 'success',
-						title: 'Correcto',
-						text: ''
-					});
+			.then(success => {
+				console.log(success);
+				if (success.status === 200) {
+					console.log(success);
+					window.localStorage.setItem("token", success.json.token);
+					window.localStorage.setItem("idCommensal", success.json.id);
+					window.location = "/src/view/mainMenu.html";
 				} else {
 					Swal.fire({
 						icon: "error",
