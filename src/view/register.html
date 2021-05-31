@@ -1,29 +1,76 @@
-<link rel="stylesheet" href="src/css/register.css">
-<script src="src/js/model/commensal.js"></script>
-<script src="src/js/controller/register.js"></script>
-
-<div id="register">
-	<div id="firstThird">
-		<p id="title" class="whiteTxt">Registro</p>
-	</div>
-	<div id="secondThird">
-		<form id="registerForm">
-			<input type="email" id="emailInput" name="emailInput"
-				   class="normalInput textField whiteTxt underlinedTextField"
-				   placeholder="Email" required="required">
-			<input type="password" id="passwordInput" name="passwordInput"
-				   class="normalInput textField whiteTxt underlinedTextField"
-				   placeholder="Contraseña"
-				   required="required">
-			<input type="text" id="usernameInput" name="usernameInput"
-				   class="normalInput textField whiteTxt underlinedTextField"
-				   placeholder="Nombre de usuario" required="required">
-		</form>
-	</div>
-	<div id="thirdThird">
-		<input type="button" id="registerButton2" value="Registrarse"
-			   class="white invertWhite button normalInput">
-		<input type="button" id="cancelButton" value="Cancelar"
-			   class="orange invertOrange button normalInput">
-	</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/register.css" />
+    <link rel="stylesheet" href="../css/inputs.css" />
+    <link rel="stylesheet" href="../css/colors.css" />
+    <script
+      src="https://kit.fontawesome.com/bebd6569f1.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Registrar comensal</title>
+  </head>
+  <body>
+    <div id="register">
+      <div id="firstThird">
+        <p id="title" class="whiteTxt">Registro</p>
+      </div>
+      <div id="secondThird">
+        <form id="registerForm" action="" onsubmit="return false">
+          <div>
+            <i ></i>
+            <input
+              type="email"
+              id="emailInput"
+              name="emailInput"
+              class="normalInput textField whiteTxt underlinedTextField"
+              placeholder="Email"
+              required="required"
+              autofocus
+            />
+          </div>
+          <input
+            type="password"
+            id="passwordInput"
+            name="passwordInput"
+            class="normalInput textField whiteTxt underlinedTextField"
+            placeholder="Contraseña"
+            required="required"
+            minlength="8"
+            max="100"
+          />
+          <input
+            type="text"
+            id="usernameInput"
+            name="usernameInput"
+            class="normalInput textField whiteTxt underlinedTextField"
+            placeholder="Nombre de usuario"
+            required="required"
+          />
+          <input
+            type="submit"
+            id="registerButton2"
+            value="Registrarse"
+            class="white invertWhite button normalInput"
+          />
+        </form>
+      </div>
+      <div id="thirdThird">
+        <input
+          type="button"
+          id="cancelButton"
+          value="Cancelar"
+          class="orange invertOrange button normalInput"
+        />
+      </div>
+    </div>
+    <script src="../js/tools/jQuery.js"></script>
+    <script src="../js/tools/sweetalert.js"></script>
+    <script src="/src/js/connection/connection.js"></script>
+    <script src="/src/js/model/commensal.js"></script>
+    <script src="/src/js/controller/register.js"></script>
+  </body>
+</html>
