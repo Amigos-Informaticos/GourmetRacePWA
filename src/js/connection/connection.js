@@ -43,9 +43,10 @@ class Connection {
 	buildBody(method, payload = null, isMultipart = false) {
 		let options = {
 			method: method,
-			headers: {"Access-Control-Allow-Origin": "*"}
+			headers: {"Access-Control-Allow-Origin": "*"},
+			credentials: "include"
 		};
-		if (payload != null) {  
+		if (payload != null) {
 			if (isMultipart) {
 				options.body = new FormData();
 				for (const key in payload) {
