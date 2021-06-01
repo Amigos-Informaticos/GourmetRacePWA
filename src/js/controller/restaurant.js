@@ -1,15 +1,11 @@
-const Connection = require("../connection/connection");
-
-$("#restaurantForm").submit(function (event) {
-    console.log("Hola");
+$("#restaurantForm").submit(function (event) {    
   let name = $("#nameInput").val(),
     category = $("#categoryInput").val(),
     location = $("#locationInput").val(),
     price = $("input:radio[name=price]:checked").val(),
-    token = localStorage.getItem("token"),
     idCommensal = localStorage.getItem("idCommensal");
 
-  registerRestaurant(name, category, location, price, idCommensal, token)
+  registerRestaurant(name, category, location, idCommensal)
     .then((success) => {
       if (success.status === 201) {
         Swal.fire({
@@ -32,10 +28,13 @@ $("#restaurantForm").submit(function (event) {
   event.preventDefault();
 });
 
-async function registerRestaurant(name, category, location, idCommensal, token) {
-    const payload = {name, idCategory:category, location, registeredBy:idCommensal},    
+async function registerRestaurant(name, category, location, idCommensal) {
+    const payload = {
+      name: name, idCategory:category, location:location, registeredBy:idCommensal
+    }; 
     const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
-    Connection.token = token;
+    Connection.token = localStorage.getItem("token");
+    Connection.cookies = localStorage.getItem("cookie");
     const response = await connection.send("post", "restaurants", null, payload);	
-	return response;
+	  return response;
 }
