@@ -55,6 +55,10 @@ async function getRestaurants(category = "") {
     }
 }
 
+$("#restaurantButton").click(function(){
+  window.location("/src/view/register.html");
+});
+
 
 function executeRating(stars) {
   const starClassActive = "rating__star fas fa-star";
@@ -70,7 +74,7 @@ function executeRating(stars) {
        } else {
           for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
        }
-    };
+    }
  });
 }
 
