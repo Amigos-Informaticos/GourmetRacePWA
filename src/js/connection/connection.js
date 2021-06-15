@@ -15,12 +15,18 @@ class Connection {
 	static cookies = null;
 	static requiredContent = null;
 
+	headers = null;
+
 	get url() {
 		return this._url;
 	}
 
 	set url(value) {
 		this._url = value;
+	}
+
+	setHeaders(headersJson) {
+		this.headers = headersJson;
 	}
 
 	buildParams(parameters = null) {
@@ -59,7 +65,18 @@ class Connection {
 		}
 		options = this.setToken(options);
 		options = this.setRequiredContent(options);
+		options = this.buildHeaders(options);
 		return this.setCookies(options);
+	}
+
+	buildHeaders(options) {
+		if (this.headers != null) {
+			for (let headerName in this.headers) {
+				options.headers[headerName] = this.headers[headerName];
+			}
+			this.headers = null;
+		}
+		return options;
 	}
 
 	setRequiredContent(options) {
@@ -103,9 +120,7 @@ class Connection {
 					json: json
 				};
 			}).catch(response => {
-				return {
-					status: response.status
-				}
+				return {status: response.status};
 			});
 		}
 		return {status: response.status};
