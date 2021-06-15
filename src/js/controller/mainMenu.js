@@ -56,7 +56,7 @@ async function getRestaurants(category = "") {
 }
 
 $("#restaurantButton").click(function(){
-  window.location("/src/view/register.html");
+  window.location = "/src/view/register.html";
 });
 
 
@@ -129,51 +129,5 @@ function isOpen(schedules = []){
     });
   }
 }
-
-function getRestaurantsTest(){
-  const restaurants = [
-    {
-      img: "https://placeimg.com/200/200/restaurants",
-      name: "McDonald",
-      schedule: "Lunes",
-      location: "https://www.google.com/",
-      price: "123",
-      score: "1",
-    },
-    {
-      img: "https://placeimg.com/200/200/animals",
-      name: "McDonald",
-      schedule: "Lunes",
-      location: "https://www.google.com/",
-      price: "123",
-      score: "1",
-    },
-    {
-      img: "https://placeimg.com/200/200/people",
-      name: "McDonald",
-      schedule: "Lunes",
-      location: "https://www.google.com/",
-      price: "123",
-      score: "1",
-    },
-  ];
-  restaurants.forEach(restaurant => {
-    $template.querySelector("img").setAttribute("src", restaurant.img);
-    $template.querySelector("img").setAttribute("alt", restaurant.name);
-    $template.querySelector(".restaurant-name").textContent = restaurant.name;
-    $template.querySelector(".restaurant-price").textContent = restaurant.price;
-    $template.querySelector(".restaurant-schedule").textContent =
-      restaurant.schedule;
-    $template.querySelector(".restaurant-location").setAttribute("href",`${restaurant.location}`);
-    $template.querySelector(".restaurant-location").setAttribute("target", "_blank");
-    $template.querySelector(".restaurant-location").textContent = "Ubicación";
-    $template.querySelector(".restaurant-score").textContent = restaurant.score;
-    let $clone = document.importNode($template, true);
-    $fragment.appendChild($clone);
-  });
-  document.querySelector(".main").appendChild($fragment);
-}
-
-//getRestaurantsTest();
 
 
