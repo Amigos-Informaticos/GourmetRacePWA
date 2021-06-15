@@ -15,12 +15,18 @@ class Connection {
 	static cookies = null;
 	static requiredContent = null;
 
+	headers = null;
+
 	get url() {
 		return this._url;
 	}
 
 	set url(value) {
 		this._url = value;
+	}
+
+	setHeaders(headersJson) {
+		this.headers = headersJson;
 	}
 
 	buildParams(parameters = null) {
@@ -59,12 +65,23 @@ class Connection {
 		}
 		options = this.setToken(options);
 		options = this.setRequiredContent(options);
+		options = this.buildHeaders(options);
 		return this.setCookies(options);
+	}
+
+	buildHeaders(options) {
+		if (this.headers != null) {
+			for (let headerName in this.headers) {
+				options.headers[headerName] = this.headers[headerName];
+			}
+			this.headers = null;
+		}
+		return options;
 	}
 
 	setRequiredContent(options) {
 		if (Connection.requiredContent != null) {
-			options.headers["Required-Content"] = Connection.requiredContent;
+			options._headers["Required-Content"] = Connection.requiredContent;
 		}
 		Connection.requiredContent = null;
 		return options;
@@ -72,14 +89,14 @@ class Connection {
 
 	setCookies(options) {
 		if (Connection.keepCookies && Connection.cookies != null) {
-			options.headers["Cookie"] = Connection.cookies;
+			options._headers["Cookie"] = Connection.cookies;
 		}
 		return options;
 	}
 
 	setToken(options) {
 		if (Connection.token != null) {
-			options.headers["Token"] = Connection.token;
+			options._headers["Token"] = Connection.token;
 		}
 		return options;
 	}
@@ -102,6 +119,8 @@ class Connection {
 					status: response.status,
 					json: value
 				};
+			}).catch(response => {
+				return {status: response.status};
 			});
 		}
 		return {status: response.status};
