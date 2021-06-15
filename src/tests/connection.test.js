@@ -5,7 +5,7 @@ test("Register user test", done => {
 		"status": 201,
 		"json": {
 			"email": "alexisao@correo.com",
-			"password": "password",
+			"password": "2b204a3f1042643e480fdd655e0e65c0",
 			"username": "alexisaO",
 			"status": true,
 			"is_owner": false
@@ -43,7 +43,7 @@ test("Search registered user test", done => {
 		"status": 200,
 		"json": [{
 			"email": "alexisao@correo.com",
-			"password": "password",
+			"password": "2b204a3f1042643e480fdd655e0e65c0",
 			"username": "alexisaO",
 			"status": true,
 			"is_owner": false
@@ -91,7 +91,7 @@ test("Get registered user test", done => {
 		"status": 200,
 		"json": {
 			"email": "alexisao@correo.com",
-			"password": "password",
+			"password": "2b204a3f1042643e480fdd655e0e65c0",
 			"username": "alexisaO",
 			"status": true,
 			"is_owner": false
