@@ -18,8 +18,7 @@
 }
 
 async function getRestaurants(category = "") {
-  const $boxes = document.querySelector(".box"),
-  $template = document.getElementById("template-box").content,
+  const $template = document.getElementById("template-box").content,
   $fragment = document.createDocumentFragment();
 
   const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
@@ -34,6 +33,7 @@ async function getRestaurants(category = "") {
       const restaurants = response.json;
       console.log(restaurants);
       restaurants.forEach((restaurant) => {
+        $template.querySelector(".box").dataset.id_restaurant = restaurant.id_restaurant;
         $template
           .querySelector("img")
           .setAttribute("src", restaurant.images[0]);
@@ -109,25 +109,35 @@ const activeStars = () => {
   }
 }
 
-getCategories();
-getRestaurants();
-
-
 function isOpen(schedules = []){
   let isOpen = false;
   let currentDate = new Date();
   let startDate = new Date();
   let endDate = new Date();
-  const time = Date.now();
+  let time = Date.now();
   if(schedules.length > 0){
     schedules.forEach(element => {
       time = element.start_time.split(":");
       isOpen = element.day == currentDate.getDay();
-      
 
-      isOpen = startDate.setHours(element.start_time.split(":")[0]) 
+
+      isOpen = startDate.setHours(element.start_time.split(":")[0])
     });
   }
 }
+
+
+getCategories();
+getRestaurants();
+
+document.addEventListener("click", e=>{
+  if (e.target.matches(".box, .box-text-container,.box-text-container > *")) {
+    console.log("Box clicked");
+  }
+  console.log(e.target)
+})
+
+
+
 
 
