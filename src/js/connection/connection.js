@@ -81,7 +81,7 @@ class Connection {
 
 	setRequiredContent(options) {
 		if (Connection.requiredContent != null) {
-			options._headers["Required-Content"] = Connection.requiredContent;
+			options.headers["Required-Content"] = Connection.requiredContent;
 		}
 		Connection.requiredContent = null;
 		return options;
@@ -89,14 +89,14 @@ class Connection {
 
 	setCookies(options) {
 		if (Connection.keepCookies && Connection.cookies != null) {
-			options._headers["Cookie"] = Connection.cookies;
+			options.headers["Cookie"] = Connection.cookies;
 		}
 		return options;
 	}
 
 	setToken(options) {
 		if (Connection.token != null) {
-			options._headers["Token"] = Connection.token;
+			options.headers["Token"] = Connection.token;
 		}
 		return options;
 	}
