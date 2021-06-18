@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/colors.css">
+    <link rel="stylesheet" href="../css/inputs.css">
     <link rel="stylesheet" href="../css/restaurantInfo.css">
     <script src="../js/controller/restaurantInfo.js"></script>
     <script
@@ -29,24 +31,9 @@
             <!-- Gallery -->
             <div class="slideshow-container">
                 <!-- Full-width images with number and caption text -->
-                <div class="mySlides fade">
-                  <div class="numbertext">1 / 3</div>
-                  <img src="/images/logo192.png" style="width:100%">
-                  <div class="text">Caption Text</div>
-                </div>
-              
-                <div class="mySlides fade">
-                  <div class="numbertext">2 / 3</div>
-                  <img src="/images/img2.jpg" style="width:100%">
-                  <div class="text">Caption Two</div>
-                </div>
-              
-                <div class="mySlides fade">
-                  <div class="numbertext">3 / 3</div>
-                  <img src="/images/img3.jpg" style="width:100%">
-                  <div class="text">Caption Three</div>
-                </div> 
-                
+                <div class="mySlides fade">                  
+                  <img src="/images/logo192.png" style="max-width: 250px; max-height: 250px;">                  
+                </div>              
                 <template id="template-image">
                     <div class="mySlides fade">
                         <div class="numbertext"></div>
@@ -67,29 +54,34 @@
                 <span class="dot" onclick="currentSlide(4)"></span>
                 <span class="dot" onclick="currentSlide(5)"></span>
             </div>
-
-
             <div class="main-information divider">
                 <span id="restaurant-name"></span>
+                <button id="btnEditRestaurant">Editar</button>
                 <div class="rating">
                     <i class="rating__star far fa-star"></i>
-                      <i class="rating__star far fa-star"></i>
+                    <i class="rating__star far fa-star"></i>
                     <i class="rating__star far fa-star"></i>
                     <i class="rating__star far fa-star"></i>
                     <i class="rating__star far fa-star"></i>
                 </div>
-                <span id="restaurant-categorie" class="restaurant-categorie">Comida rapida</span>
-                <span id="restaurant-price" class="restaurant-price">1</span>
+                <span id="restaurant-categorie" class="restaurant-categorie"></span>
+                <span id="restaurant-price" class="restaurant-price"></span>
             </div>
             <br>
             <div class="serviceType-container divider">
-                <span id="restaurant-serviceType" class="serviceType">Para llevar</span><span class="serviceType">En el lugar</span>
-
 			</div>
+            <template class = "template-serviceType">
+                <div class="serviceType-container divider">
+                    <span class="serviceType"></span>
+                </div>
+            </template>
             <br>
             <div class="contactInformation-container divider">
-                <a id="restaurant-location" class="restaurant-location"><i class="material-icons">location_on</i>Ubicación</a>                
-                <span id="restaurant-shedule">Horario</span>
+                <a id="restaurant-location" class="restaurant-location">
+                    <i class="material-icons">location_on</i>
+                Ubicación</a>    
+                <span id="restaurant-shedule">
+                    <i class="fas fa-calendar-alt"></i> Horario</span>
                 <table class="schedule">                    
                 </table>
                 <template id="template-shedule">
@@ -106,7 +98,7 @@
                 <div class="comment-box">
                     <div class="comment-box-header">
                         <p class="comment-username"></p>
-                        <p id="comment-delete-button" class="comment-delete-button"><i class="comment-delete-icon fas fa-trash-alt"></i></p>
+                        <p id="comment-delete-button" class="comment-delete-button"><i class="comment-delete-icon fas fa-trash-alt" style="display: none"></i></p>
                     </div>
                     <p class="comment-username"></p>
                     <p class="comment-date"></p>
@@ -115,13 +107,30 @@
             </template>
 
             <div class="comment-form-container">
+                <div class="username-container">
+                    <p id="username-text"></p>
+                </div>
+                <div class="rate-restaurant-container">
+                    <div class="rate-restaurant">
+                        <i class="rate_star far fa-star" data-value="1"></i>
+                        <i class="rate_star far fa-star" data-value="2"></i>
+                        <i class="rate_star far fa-star" data-value="3"></i>
+                        <i class="rate_star far fa-star" data-value="4"></i>
+                        <i class="rate_star far fa-star" data-value="5"></i>
+                    </div>
+                    <button id="btnRateRestaurant" class = "button-flex white" type="button">Calificar</button>
+                </div>
                 <form id="comment-form" class="comment-form" action="" onsubmit="return false">
                     <textarea id = "txtComment" name="txtComment" id="" cols="30" rows="10" minLength = "1" maxLength="255" placeholder="Escriba su comentario" autocomplete="off" wrap="hard" required>
                     </textarea>
-                    <button>Enviar</button>
+                    <div class="comment-buttons">
+                        <button type="reset" class="button-flex white">Limpiar campo</button><button class="button-flex orange">Comentar</button>                        
+                    </div>
+                    <div class="image-buttons">
+                        <button id="btnAddImage" class="button-flex white" type="button" value="Subir multimedia">Subir multimedia</button>
+                    </div>                   
                 </form>
-            </div>
-            
+            </div>            
         </article>
     </div>
     <script src="../js/tools/jQuery.js"></script>
