@@ -5,9 +5,10 @@
     
 }
 
-body {    
+body { 
     background: #FFFFFF url("/images/gradientLinesBackgroundOrange.jpg") no-repeat;
     background-size: cover;
+    
 }
 .wrapper {
     display: flex;
@@ -15,6 +16,7 @@ body {
     font-weight: bold;
     text-align: center;
     border: 1px solid black;
+    
 }
 
 .wrapper > * {
@@ -29,7 +31,7 @@ body {
     align-items: baseline;
     justify-content: center;
     color: #FFFFFF;
-    font-size: 2vw;
+    font-size: 1.5rem;
 }
 
 .main{
@@ -41,7 +43,7 @@ body {
     mix-blend-mode: lighten;
     border-radius: 5px;
     width: 50%;
-    flex: 0 1 auto;    
+    flex: 1 1 auto;    
 }
 
 .restaurantHeader {
@@ -55,6 +57,7 @@ body {
 .restaurantBody {
     display: flex;
     flex-flow: column nowrap;
+    padding: 1rem;
 }
 
 #header:hover{
@@ -68,8 +71,8 @@ body {
 
 .form-flex {
     display: flex;
-    flex-flow: column nowrap;
-    flex: 1 0 auto;
+    flex-flow: row wrap;
+    flex: 1 1 auto;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -79,19 +82,46 @@ body {
     display: flex;
     flex: 1 1 100%;
     flex-flow: row nowrap;
+    justify-content: center;
     align-items: baseline;
+    margin-bottom: 1rem;
 }
 
-.form-flex-row > input[type="text"], select{
+.form-flex-row > input[type="text"]{
+    flex-shrink: 1;
+    width: 50%;
+    font-size: 0.8rem;
+    font-weight: lighter;
+}
+
+.form-flex-row > i {
+    color: black;
+}
+
+.form-flex-row > select {
+    flex-shrink: 1;    
+    width: 50%;
+}
+.form-flex-row > p {
+    font-size: 1rem;
+    flex-grow: 1;
+    text-align: right;   
+}
+.radio-flex-row{
+    width: 50%;
+    text-align: left;
+}
+
+/*.form-flex-row > input[type="text"], select{
     margin: 1em auto;
     font-size: 0.8em;
     flex:0 1 50%;
 
-}
+}*/
 
-.form-flex-row i{
+/*.form-flex-row i{
     margin: 1em auto;
     width: 10%;
     flex:0 1 auto;
     align-self: flex-end;
-}
+}*/

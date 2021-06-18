@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+    font-family: Roboto, Verdana;
+}
 #register {
 	position: absolute;
 	top: 0;
