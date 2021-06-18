@@ -8,9 +8,7 @@ body {
 }
 .wrapper {
     display: flex;
-    flex-flow: row wrap;
-    font-weight: bold;
-    text-align: center;
+    flex-flow: row wrap;    
 }
 
 .wrapper > * {
@@ -20,27 +18,34 @@ body {
 .box {        
     background-color: #ffffff;
     display:flex;
-    flex-direction:row;
+    flex-flow: row wrap;
     margin-bottom: 0.5em;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));   
 }
 
-.box .box-image-container  img {
+.box-image-container {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+}
+
+.box-image-container  > img {
     max-width: 200px;
     max-height: 200px;
 }
 
-.box-image-container p {
-    text-align: center;
-}
-
 .box-text-container {
     display: flex;
-    flex: 1 0 70%;
-    flex-direction: column;
-    justify-content:stretch;
+    flex: 1 1 auto;
+    flex-flow: row wrap;
+    justify-content: center;
     text-align: left;
-    margin-left: 0.5em;
+    align-items: center;
+    align-content: space-evenly;    
+}
+
+.box-text-container > * {
+    width: 100%;
 }
 .header {
     display: flex;
@@ -71,7 +76,9 @@ body {
     justify-content: flex-start;
 }
 
-
+.aside * {
+    text-align: center;
+}
 
 .aside-1 {
     background: #C4C4C4;
@@ -87,8 +94,7 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));    
-    color: #ffffff;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));        
 }
 .navOptions li {
     margin: 15px;
@@ -96,17 +102,16 @@ body {
     background-color: #FF6C1D;
 }
 
-.navOptions intput[type=text]{
-    margin: 15px;
-    padding: 15px;
-    border: inherit none;
+
+.navOptions a {
+    color: #ffffff;
 }
 
-li a {
-    display: block;
-    text-decoration: none white;
-    
+.navOptions a:visited, a:visited, a:link {    
+    text-decoration: none;
 }
+
+
 
 .topnav {
     overflow: hidden;
@@ -133,7 +138,7 @@ li a {
     color: white;
 }
 
-.topnav input[type=text] {    
+.topnav input[type=text] {
     padding: 6px;
     border: none;        
     font-size: 17px;
@@ -160,10 +165,17 @@ li a {
         display: flex;
         align-items: center;
     }
+    
+    .box-image-container{
+        justify-content: center;
+    }
+    .box-text-container > * {
+        text-align: center;
+    }
 }
 
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 600px) {    
     .aside { flex: 1 0 0; }    
 }
 
