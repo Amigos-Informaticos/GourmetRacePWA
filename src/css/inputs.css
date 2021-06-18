@@ -49,3 +49,10 @@
 	width: var(--button-width);
 	margin: 20px auto;
 }
+
+.button-flex {
+	border-style: initial;
+	font-weight: bold;
+	font-size: 1em;
+	padding: 3px 0.8rem;
+}

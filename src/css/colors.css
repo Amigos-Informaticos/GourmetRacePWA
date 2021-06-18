@@ -8,6 +8,11 @@
 	color: var(--orange-color);
 }
 
+.white:hover{
+	background-color: var(--orange-color);
+	color: white;
+}
+
 .invertWhite:hover {
 	background-color: var(--orange-color);
 	color: white;
@@ -20,6 +25,11 @@
 .orange {
 	background-color: var(--orange-color);
 	color: white;
+}
+
+.orange:hover{
+	background-color: white;
+	color: var(--orange-color);
 }
 
 .invertOrange:hover {
