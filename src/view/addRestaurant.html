@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/addRestaurant.css">
+    <link rel="stylesheet" href="/src/css/inputs.css">
+    <link rel="stylesheet" href="/src/css/colors.css">
+    <script
+      src="https://kit.fontawesome.com/bebd6569f1.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Restaurante</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header id="header" class="header">
+        <h1>GourmetRace</h1>
+      </header>
+      <article class="main">
+        <div class="restaurantForm">
+          <div class="restaurantHeader">
+            <h2 id="restaurantHeaderTitle">Registrar restaurante</h2>
+          </div>
+          <div class="restaurantBody">
+            <form class="form-flex" id="restaurantForm" action="" onsubmit="return false">
+              <label class="form-flex-row" for="nameInput">
+                <i class="fas fa-store"></i>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nombre"
+                  required
+                  id="nameInput"
+                />
+              </label>
+              <label class="form-flex-row" for="categoryInput">                
+                  <i class="fas fa-utensils"></i>
+                  <select name="category" id="categoryInput" required>
+                  </select>
+                  <template id="template-category">
+                      <option value=""></option>
+                  </template>                       
+              </label>
+              <label class="form-flex-row" for="locationInput">
+                <i class="fas fa-map-marker-alt"></i>
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Ubicación"
+                  id="locationInput"
+                  class=""
+                  required                  
+                />
+              </label>
+              <label class="form-flex-row">
+                <i class="fas fa-motorcycle"></i>
+                <select name="serviceType" id="serviceTypeInput">
+                </select>
+                <template id="template-serviceType">        
+                    <option value=""></option>
+                </template>
+              </label>
+              <i></i>
+              <label for="" class="form-flex-row">
+                <p>Rango de precio:</p>
+                <input type="radio" name="price" value="1" id="" />
+                <input type="radio" name="price" value="2" id="" />
+                <input type="radio" name="price" value="3" id="" />
+              </label>
+              <div class="buttonSection">
+                <input type="submit" value="Registrar" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </article>
+    </div>
+    <script src="../js/tools/jQuery.js"></script>
+    <script src="../js/tools/sweetalert.js"></script>
+    <script src="../js/connection/connection.js"></script>
+    <script src="../js/controller/addRestaurant.js"></script>
+  </body>
+</html>

@@ -28,7 +28,8 @@ $("#loginForm").submit(function(event) {
 					console.log(success);
 					window.localStorage.setItem("token", success.json.token);
 					window.localStorage.setItem("idCommensal", success.json.id);
-					// window.location = "/src/view/mainMenu.html";
+					window.localStorage.setItem("cookie", Connection.cookies);
+					window.location = "/src/view/mainMenu.html";
 				} else {
 					Swal.fire({
 						icon: "error",

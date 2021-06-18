@@ -49,7 +49,7 @@ class Connection {
 	buildBody(method, payload = null, isMultipart = false) {
 		let options = {
 			method: method,
-			headers: {"Access-Control-Allow-Origin": "*"},
+			headers: {"Access-Control-Allow-Origin":"*"},
 			credentials: "include"
 		};
 		if (payload != null) {
@@ -110,14 +110,14 @@ class Connection {
 	async send(method, endpoint, parameters = null, payload = null, isMultipart = false) {
 		let queryString = this.buildParams(parameters);
 		let header = this.buildBody(method, payload, isMultipart);
-		const response = await fetch(this.url + "/" + endpoint + queryString, header);
+		const response = await fetch(this.url + "/" + endpoint + queryString, header);		
 		const contentType = response.headers.get("content-type");
 		this.saveCookies(response.headers.get("Set-Cookie"));
 		if (contentType && contentType.indexOf("application/json") !== -1) {
-			return response.json().then(value => {
+			return response.json().then(json => {
 				return {
 					status: response.status,
-					json: value
+					json: json
 				};
 			}).catch(response => {
 				return {status: response.status};

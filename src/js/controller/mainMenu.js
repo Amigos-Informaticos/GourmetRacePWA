@@ -18,8 +18,7 @@
 }
 
 async function getRestaurants(category = "") {
-  const $boxes = document.querySelector(".box"),
-  $template = document.getElementById("template-box").content,
+  const $template = document.getElementById("template-box").content,
   $fragment = document.createDocumentFragment();
 
   const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
@@ -34,6 +33,7 @@ async function getRestaurants(category = "") {
       const restaurants = response.json;
       console.log(restaurants);
       restaurants.forEach((restaurant) => {
+        $template.querySelector(".box").dataset.id_restaurant = restaurant.id_restaurant;
         $template
           .querySelector("img")
           .setAttribute("src", restaurant.images[0]);
@@ -55,6 +55,10 @@ async function getRestaurants(category = "") {
     }
 }
 
+$("#restaurantButton").click(function(){
+  window.location = "/src/view/register.html";
+});
+
 
 function executeRating(stars) {
   const starClassActive = "rating__star fas fa-star";
@@ -70,7 +74,7 @@ function executeRating(stars) {
        } else {
           for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
        }
-    };
+    }
  });
 }
 
@@ -105,71 +109,35 @@ const activeStars = () => {
   }
 }
 
-getCategories();
-getRestaurants();
-
-
 function isOpen(schedules = []){
   let isOpen = false;
   let currentDate = new Date();
   let startDate = new Date();
   let endDate = new Date();
-  const time = Date.now();
+  let time = Date.now();
   if(schedules.length > 0){
     schedules.forEach(element => {
       time = element.start_time.split(":");
       isOpen = element.day == currentDate.getDay();
-      
 
-      isOpen = startDate.setHours(element.start_time.split(":")[0]) 
+
+      isOpen = startDate.setHours(element.start_time.split(":")[0])
     });
   }
 }
 
-function getRestaurantsTest(){
-  const restaurants = [
-    {
-      img: "https://placeimg.com/200/200/restaurants",
-      name: "McDonald",
-      schedule: "Lunes",
-      location: "https://www.google.com/",
-      price: "123",
-      score: "1",
-    },
-    {
-      img: "https://placeimg.com/200/200/animals",
-      name: "McDonald",
-      schedule: "Lunes",
-      location: "https://www.google.com/",
-      price: "123",
-      score: "1",
-    },
-    {
-      img: "https://placeimg.com/200/200/people",
-      name: "McDonald",
-      schedule: "Lunes",
-      location: "https://www.google.com/",
-      price: "123",
-      score: "1",
-    },
-  ];
-  restaurants.forEach(restaurant => {
-    $template.querySelector("img").setAttribute("src", restaurant.img);
-    $template.querySelector("img").setAttribute("alt", restaurant.name);
-    $template.querySelector(".restaurant-name").textContent = restaurant.name;
-    $template.querySelector(".restaurant-price").textContent = restaurant.price;
-    $template.querySelector(".restaurant-schedule").textContent =
-      restaurant.schedule;
-    $template.querySelector(".restaurant-location").setAttribute("href",`${restaurant.location}`);
-    $template.querySelector(".restaurant-location").setAttribute("target", "_blank");
-    $template.querySelector(".restaurant-location").textContent = "Ubicación";
-    $template.querySelector(".restaurant-score").textContent = restaurant.score;
-    let $clone = document.importNode($template, true);
-    $fragment.appendChild($clone);
-  });
-  document.querySelector(".main").appendChild($fragment);
-}
 
-//getRestaurantsTest();
+getCategories();
+getRestaurants();
+
+document.addEventListener("click", e=>{
+  if (e.target.matches(".box, .box-text-container,.box-text-container > *")) {
+    console.log("Box clicked");
+  }
+  console.log(e.target)
+})
+
+
+
 
 

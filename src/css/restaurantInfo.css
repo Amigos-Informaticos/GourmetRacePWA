@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:Roboto, Verdana;;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    font-weight: bold;    
+    border: 1px solid black;        
+}
+
+.wrapper > * {
+    padding: 10px;
+    flex: 1 100%;
+}
+
+.main {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    background: #FF6C1D;
+    align-items: baseline;
+    justify-content: center;
+    flex: 1 0 10%;
+}
+
+.main-information {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.serviceType-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;  
+
+}
+
+.serviceType-container > * {
+  font-size: 0.9rem; 
+  flex: 0 0 20%;
+}
+
+.contactInformation-container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.contactInformation-container * {
+  font-size: 0.835rem;
+
+}
+
+.comments-container {
+  display: flex;
+  flex-flow: column nowrap;  
+  align-items: center;
+  
+  width: 100%;
+}
+
+.comment-box {
+  margin-bottom: 0.5em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 95%;
+  border: 1px solid #E8EAED;
+  padding: 1rem;
+}
+
+.comment-box-header {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.comment-delete-button {  
+  cursor: pointer;
+  padding: .25rem;
+}
+
+.comment-form-container {
+  display: flex;
+  background-color: #e0e0e0;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 1;
+  width: 100%;  
+}
+
+.comment-form {
+  display: flex;
+  flex-flow: row wrap;
+  flex:0 0 50%;
+  justify-content: flex-end;  
+}
+
+.comment-form > *{  
+  margin: 1vh auto;
+}
+
+.comment-form textarea {
+  flex-basis: 100%;
+  resize: none;
+}
+
+.comment-form button {
+  flex:0 0 25%;
+  padding: .5vh;  
+  
+}
+
+#gourmet-race {
+    font-size: 5vw;
+    color: #fff;
+}
+
+#restaurant-name {
+    font-size: 4vw;
+    flex-basis: 100%;
+}
+#restaurant-location {
+    flex-basis: 100%;
+}
+#restaurant-telephone {
+    flex: 1 1 50%;
+}
+#restaurant-shedule {
+    flex-basis: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;    
+}
+
+#restaurant-shedule:hover{ 
+    background-color: #F8F9FA;
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+    border: 1px solid black;
+}
+
+.hide {
+    display: none;
+}
+
+.rating {
+    flex-basis: 100%;
+}
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+
+  .divider {
+      border-bottom: 1px solid #E8EAED;
+  }
+  
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  /* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  /* The dots/bullets/indicators */
+  .dots-container {
+      text-align: center;
+      align-self: center;      
+  }
+  .dot {
+    cursor: pointer;
+    height: 0.8vw;
+    width: 0.8vw;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }

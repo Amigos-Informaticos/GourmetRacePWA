@@ -21,7 +21,6 @@ body {
     background-color: #ffffff;
     display:flex;
     flex-direction:row;
-    ;
     margin-bottom: 0.5em;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));   
 }
@@ -37,8 +36,9 @@ body {
 
 .box-text-container {
     display: flex;
-    flex: 1 70%;
+    flex: 1 0 70%;
     flex-direction: column;
+    justify-content:stretch;
     text-align: left;
     margin-left: 0.5em;
 }
@@ -151,14 +151,23 @@ li a {
     .topnav input[type=text] {
         border: 1px solid #ccc;
     }
+    .header {
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+
+    .header .topnav{
+        display: flex;
+        align-items: center;
+    }
 }
 
 
 @media all and (min-width: 600px) {
-    .aside { flex: 1 0 0; }
+    .aside { flex: 1 0 0; }    
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width: 800px) {    
     .main    { flex: 3 0; }
     .aside-1 { order: 1; }
     .main    { order: 2; }

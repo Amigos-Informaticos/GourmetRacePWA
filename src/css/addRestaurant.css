@@ -1,6 +1,8 @@
 * {
-    box-sizing: border-box;
-    font-family: Roboto, Verdana;
+    box-sizing: border-box;    
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    
 }
 
 body {    
@@ -25,49 +27,71 @@ body {
     flex-flow: row nowrap;
     background: #FF6C1D;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 2vw;
 }
 
 .main{
     display: flex;
-    justify-content: center;
+    justify-content: center;    
 }
 .restaurantForm {
     background: linear-gradient(0deg, rgba(255, 226, 192, 0.54), rgba(255, 226, 192, 0.54)), rgba(255, 255, 255, 0.45);
     mix-blend-mode: lighten;
     border-radius: 5px;
+    width: 50%;
+    flex: 0 1 auto;    
 }
+
 .restaurantHeader {
     background: rgba(252, 153, 37, 0.69);
     color: #FFFFFF;
     margin-top: 0;
     padding: 0 1em;
+    font-size: 2vw;
 }
 
-.price {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-}
-
-#restaurantHeaderTitle {
-    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 0;
-}
 .restaurantBody {
-    display: flex;
-    flex-flow: column wrap;
-}
-
-#restaurantForm {
     display: flex;
     flex-flow: column nowrap;
 }
 
-#serviceType {
-    align-self: center;
+#header:hover{
+    cursor: pointer;    
 }
 
-select::before {
-    content:'Hola'
+#restaurantHeaderTitle {    
+    margin-top: 0;
+}
+
+
+.form-flex {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 0 auto;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.form-flex-row {
+    display: flex;
+    flex: 1 1 100%;
+    flex-flow: row nowrap;
+    align-items: baseline;
+}
+
+.form-flex-row > input[type="text"], select{
+    margin: 1em auto;
+    font-size: 0.8em;
+    flex:0 1 50%;
+
+}
+
+.form-flex-row i{
+    margin: 1em auto;
+    width: 10%;
+    flex:0 1 auto;
+    align-self: flex-end;
 }
