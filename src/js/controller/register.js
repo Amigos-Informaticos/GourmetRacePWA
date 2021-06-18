@@ -2,11 +2,11 @@ $("#cancelButton").click(function () {
 	window.location = "/";
 });
 
-document.querySelector("#registerForm").onsubmit = function (){	
+document.querySelector("#registerForm").onsubmit = function (e){	
 	let email = $("#emailInput").val(),
 	password = $("#passwordInput").val(),
 	username = $("#usernameInput").val();
-	
+	e.preventDefault();
 	if (validateRegister()) {
 		register(email, password, username).then(success => {			
 			if(success.status === 201) {
@@ -19,14 +19,26 @@ document.querySelector("#registerForm").onsubmit = function (){
 					icon: 'warning',
 					title: 'El comensal ya ha sido registrado previamente'				
 				});
+			} else if (success.status>=400 && success < 500) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Fallo al conectar con el servidor',
+					text: `Ocurrió un error en la comunicación con el servidor. 
+					Código de error: ${success.status}`
+				});				
+			}else if(success.status === 500){
+				Swal.fire({
+					icon: 'error',
+					title: 'Fallo al conectar con el servidor',
+					text:`Código de error: ${success.status}`
+				});
 			}
 		}).catch(failure => {
 			Swal.fire({
 				icon: 'error',
 				title: 'Fallo al conectar con el servidor'				
 			});
-		});
-		return false;		
+		});		
 	} else {
 		Swal.fire({
 			icon: 'warning',
