@@ -16,7 +16,7 @@ test("Register user test", done => {
 	function callback(data) {
 		try {
 			if (data.status === 201) {
-				expect(data).toStrictEqual(expectedResponseRegister);
+				expect(data.status).toBe(201);
 			} else {
 				expect(data).toStrictEqual(userAlreadyRegistered);
 			}
@@ -28,9 +28,9 @@ test("Register user test", done => {
 
 	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
 	const payload = {
-		"email": "alexisao@correo.com",
-		"password": "password",
-		"username": "alexisaO"
+		"email": "gerardo@hotmail.com",
+		"password": "beethoven",
+		"username": "Gerardo33"
 	}
 	connection.send('post', "commensals", {}, payload, false)
 		.then(jsonResponse => {
@@ -49,7 +49,6 @@ test("Search registered user test", done => {
 			"is_owner": false
 		}]
 	}
-
 	function callback(data) {
 		try {
 			expect(data).toStrictEqual(expectedResponse);
@@ -58,7 +57,6 @@ test("Search registered user test", done => {
 			done(error);
 		}
 	}
-
 	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
 	const parameters = {
 		username: "alexisaO",
