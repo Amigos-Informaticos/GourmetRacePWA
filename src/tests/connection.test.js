@@ -51,7 +51,7 @@ test("Search registered user test", done => {
 	}
 	function callback(data) {
 		try {
-			expect(data).toBe(expectedResponse);
+			expect(data).toStrictEqual(expectedResponse);
 			done();
 		} catch (error) {
 			done(error);
