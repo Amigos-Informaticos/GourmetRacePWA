@@ -2,7 +2,7 @@ function getRestaurant() {
   if (localStorage.getItem("idRestaurant")) {
     let idRestaurant = localStorage.getItem("idRestaurant");
     const connection = new Connection(
-      "http://amigosinformaticos.ddns.net:42066"
+      "https://amigosinformaticos.ddns.net:42066"
     );
     const response = connection.send("get", `restaurants/${idRestaurant}`);
     console.log(response);
@@ -28,7 +28,7 @@ function getRestaurant() {
 }
 
 async function getViews() {
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   let idRestaurant = localStorage.getItem("idRestaurant");
   let headers = {
     id_commensal: localStorage.getItem("idCommensal"),

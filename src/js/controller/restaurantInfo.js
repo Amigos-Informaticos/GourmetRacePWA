@@ -61,20 +61,19 @@ function getSpanishWeekDay(dayNumber) {
 async function getCommensal() {
   let idCommensal = localStorage.getItem("idCommensal");
   Connection.token = localStorage.getItem("token");
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   const response = await connection.send("get", `commensals/${idCommensal}`);
   if(response.status == 200){
     document.getElementById("username-text").textContent = response.json.username;
-
   } else if (response.status == 419) {
     Swal.fire({
       icon: "warning",
       title: "Sesión caducada. Por favor, vuelva a iniciar sesión.",
       showConfirmButton: true,
       timer: 3000,
-    }).then(() => {
-      localStorage.clear();
-      window.location = "/";
+    }).then(swalPromise => {
+      // localStorage.clear();
+      // window.location = "/";
     });
   }
 }
@@ -84,7 +83,7 @@ function getRestaurant() {
     let idRestaurant = localStorage.getItem("idRestaurant"),
       $fragment = document.createDocumentFragment();
     const connection = new Connection(
-      "http://amigosinformaticos.ddns.net:42066"
+      "https://amigosinformaticos.ddns.net:42066"
     );
     const response = connection.send("get", `restaurants/${idRestaurant}`);
     const $template = document.getElementById("template-image").content,
@@ -221,7 +220,7 @@ function getComments() {
       $fragment = document.createDocumentFragment(),
       idCommensal = localStorage.getItem("idCommensal");
     const connection = new Connection(
-      "http://amigosinformaticos.ddns.net:42066"
+      "https://amigosinformaticos.ddns.net:42066"
     );
     const response = connection.send(
       "get",
@@ -284,7 +283,7 @@ function deleteRestaurant(e) {
     console.log(e.target);
     $parenteElement = document.querySelector(".comments-container");
   
-    const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+    const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
     connection.setHeaders(headers);
     Connection.token = localStorage.getItem("token");
     Connection.cookies = localStorage.getItem("cookie");
@@ -337,7 +336,7 @@ function deleteComment(e) {
   console.log(e.target);
   $parenteElement = document.querySelector(".comments-container");
 
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   connection.setHeaders(headers);
   Connection.token = localStorage.getItem("token");
   Connection.cookies = localStorage.getItem("cookie");
@@ -399,7 +398,7 @@ async function rateRestaurant(e) {
 
   if (rateValue > 0) {
     const connection = new Connection(
-      "http://amigosinformaticos.ddns.net:42066"
+      "https://amigosinformaticos.ddns.net:42066"
     );
     Connection.token = localStorage.getItem("token");
     Connection.cookies = localStorage.getItem("cookie");
@@ -460,7 +459,7 @@ async function rateRestaurant(e) {
 }
 
 async function commentRestaurant(params) {
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   Connection.token = localStorage.getItem("token");
   Connection.cookies = localStorage.getItem("cookie");
   let idRestaurant = localStorage.getItem("idRestaurant");
@@ -470,7 +469,6 @@ async function commentRestaurant(params) {
     null,
     params
   );
-  console.log(response);
   return response;
 }
 
@@ -518,9 +516,7 @@ $("#comment-form").submit(function () {
           } else if (response.status == 419) {
             Swal.fire({
               icon: "warning",
-              title: "Sesión caducada. Por favor, vuelva a iniciar sesión.",
-              showConfirmButton: true,
-              timer: 3000,
+              title: "Sesión caducada. Por favor, vuelva a iniciar sesión."
             }).then(() => {
               localStorage.clear();
               window.location = "/";
@@ -565,7 +561,7 @@ function executeRating(stars) {
 }
 
 function claimRestaurant(event) {
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   Connection.token = localStorage.getItem("token");
   let idRestaurant = document.querySelector("#btnClaimRestaurant").dataset
     .id_restaurant;
@@ -651,7 +647,7 @@ async function uploadImage(e) {
       };
 
       let connection = new Connection(
-        "http://amigosinformaticos.ddns.net:42066"
+        "https://amigosinformaticos.ddns.net:42066"
       );
       Connection.token = localStorage.getItem("token");
       const response = connection.send(
