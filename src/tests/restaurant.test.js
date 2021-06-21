@@ -50,7 +50,7 @@ test("Edit restaurant", done => {
 			} else {
 				expect(response.status).toBe(409);
 			}
-			fail();
+			done();
 		} catch (error) {
 			done(error);
 		}
