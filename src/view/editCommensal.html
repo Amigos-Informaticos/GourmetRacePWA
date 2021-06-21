@@ -1,76 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/register.css" />
-    <link rel="stylesheet" href="../css/inputs.css" />
-    <link rel="stylesheet" href="../css/colors.css" />
-    <script
-      src="https://kit.fontawesome.com/bebd6569f1.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Editar perfil</title>
-  </head>
-  <body>
-    <div id="register">
-      <div id="firstThird">
-        <p id="title" class="whiteTxt">Editar perfil</p>
-      </div>
-      <div id="secondThird">
-        <form id="registerForm" action="" onsubmit="return false">
-          <div>
-            <i ></i>
-            <input
-              type="email"
-              id="emailInput"
-              name="emailInput"
-              class="normalInput textField whiteTxt underlinedTextField"
-              placeholder="Email"
-              required="required"
-              autofocus
-            />
-          </div>
-          <input
-            type="password"
-            id="passwordInput"
-            name="passwordInput"
-            class="normalInput textField whiteTxt underlinedTextField"
-            placeholder="Contraseña"
-            required="required"
-            minlength="8"
-            max="100"
-          />
-          <input
-            type="text"
-            id="usernameInput"
-            name="usernameInput"
-            class="normalInput textField whiteTxt underlinedTextField"
-            placeholder="Nombre de usuario"
-            required="required"
-          />
-          <input
-            type="submit"
-            id="registerButton2"
-            value="Editar"
-            class="white invertWhite button normalInput"
-          />
-        </form>
-      </div>
-      <div id="thirdThird">
-        <input
-          type="button"
-          id="cancelButton"
-          value="Cancelar"
-          class="orange invertOrange button normalInput"
-        />
-      </div>
-    </div>
-    <script src="../js/tools/jQuery.js"></script>
-    <script src="../js/tools/sweetalert.js"></script>
-    <script src="/src/js/connection/connection.js"></script>
-    <script src="/src/js/model/commensal.js"></script>
-    <script src="/src/js/controller/editCommensal.js"></script>
-  </body>
+<head>
+	<meta charset="UTF-8"/>
+	<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<link rel="stylesheet" href="../css/main.css">
+	<link href="../css/register.css" rel="stylesheet"/>
+	<link href="../css/inputs.css" rel="stylesheet"/>
+	<link href="../css/colors.css" rel="stylesheet"/>
+	<script crossorigin="anonymous"
+			src="https://kit.fontawesome.com/bebd6569f1.js"></script>
+	<title>Editar perfil</title>
+</head>
+<body>
+<div id="register">
+	<div id="firstThird">
+		<p class="whiteTxt" id="title">Editar perfil</p>
+	</div>
+	<div id="secondThird">
+		<form action="" id="registerForm" onsubmit="return false">
+			<div>
+				<i></i>
+				<input autofocus
+					   class="normalInput textField whiteTxt underlinedTextField"
+					   id="emailInput"
+					   name="emailInput"
+					   placeholder="Email"
+					   required="required"
+					   type="email"/>
+			</div>
+			<input class="normalInput textField whiteTxt underlinedTextField"
+				   id="passwordInput"
+				   max="100"
+				   minlength="8"
+				   name="passwordInput"
+				   placeholder="Contraseña"
+				   required="required"
+				   type="password"/>
+			<input class="normalInput textField whiteTxt underlinedTextField"
+				   id="usernameInput"
+				   name="usernameInput"
+				   placeholder="Nombre de usuario"
+				   required="required"
+				   type="text"/>
+			<input class="white invertWhite button normalInput"
+				   id="registerButton2"
+				   type="submit"
+				   value="Editar"/>
+		</form>
+	</div>
+	<div id="thirdThird">
+		<input class="orange invertOrange button normalInput"
+			   id="cancelButton"
+			   type="button"
+			   value="Cancelar"/>
+	</div>
+</div>
+<script src="../js/tools/jQuery.js"></script>
+<script src="../js/tools/sweetalert.js"></script>
+<script src="/src/js/connection/connection.js"></script>
+<script src="/src/js/model/commensal.js"></script>
+<script src="/src/js/controller/editCommensal.js"></script>
+</body>
 </html>
