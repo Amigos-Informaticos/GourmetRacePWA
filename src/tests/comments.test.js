@@ -80,9 +80,12 @@ test("Delete a comment", done => {
 			.catch(error => done(error));
 	} else {
 		fail("Id comment is null");
+		done();
+
 	}
 
 	function callback(data) {
 		expect(data).toBe(200);
+		done();
 	}
 });
