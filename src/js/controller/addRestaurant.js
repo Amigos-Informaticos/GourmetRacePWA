@@ -19,6 +19,7 @@ $("#restaurantForm").submit(function (event) {
 					icon: "success",
 					title: "Restaurante registrado con exito",
 				});
+				window.location("mainMenu.html");
 			} else if (success.status === 400) {
 				Swal.fire({
 					icon: "warning",
