@@ -15,7 +15,7 @@ self.addEventListener("fetch", (e) => {
 });
 
 const filesToCache = [
-	"./index.html",
+	"index.html",
 	"./src/view/addRestaurant.html",
 	"./src/view/editCommensal.html",
 	"./src/view/editRestaurant.html",
@@ -24,7 +24,7 @@ const filesToCache = [
 	"./src/view/restaurantInfo.html",
 	"./src/view/scoreReport.html",
 	"./src/view/viewsReport.html",
-	"./src/css/addRestaurant",
+	"./src/css/addRestaurant.css",
 	"./src/css/colors.css",
 	"./src/css/editRestaurant.css",
 	"./src/css/inputs.css",
