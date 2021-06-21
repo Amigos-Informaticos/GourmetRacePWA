@@ -91,36 +91,37 @@ function getRestaurant() {
 
     response
       .then(function (result) {
-        if (result.status == 200) {
+        let $parent, $sibling;
+        if (result.status === 200) {
           console.log(result);
           document.getElementById("restaurant-name").textContent =
-            result.json.name;
+              result.json.name;
           if (!result.json.claimed) {
             let $button = document.createElement("button");
             $button.setAttribute("id", "btnClaimRestaurant");
             $button.dataset.id_restaurant = result.json.id_restaurant;
             $button.textContent = "Reclamar";
-            let $parent = document.querySelector(".main-information");
+            $parent = document.querySelector(".main-information");
             let $sibling = document.querySelector(".rating");
             $parent.insertBefore($button, $sibling);
           }
-          if (result.json.claimer == localStorage.getItem("idCommensal")) {
+          if (result.json.claimer === localStorage.getItem("idCommensal")) {
             let $button = document.createElement("button");
             $button.setAttribute("id", "btnViewsReport");
             $button.dataset.id_restaurant = result.json.id_restaurant;
             $button.textContent = "Ver reporte de vistas";
             $parent = document.querySelector(".main-information");
-            $sibling = document.querySelector(".rating");
-            $padre.insertBefore($button, $sibling);
+            let $sibling = document.querySelector(".rating");
+            $parent.insertBefore($button, $sibling);
           }
           if (result.json.claimer == localStorage.getItem("idCommensal")) {
             let $button = document.createElement("button");
             $button.setAttribute("id", "btnScoreReport");
             $button.dataset.id_restaurant = result.json.id_restaurant;
             $button.textContent = "Ver reporte de puntuaciones";
-            $padre = document.querySelector(".main-information");
-            $sibling = document.querySelector(".rating");
-            $padre.insertBefore($button, $sibling);
+            $parent = document.querySelector(".main-information");
+            let $sibling = document.querySelector(".rating");
+            $parent.insertBefore($button, $sibling);
           }
           if (result.json.claimer == localStorage.getItem("idCommensal")) {
             let $button = document.createElement("button");
@@ -132,15 +133,15 @@ function getRestaurant() {
             $padre.insertBefore($button, $sibling);
           }
           document.getElementById("restaurant-categorie").textContent =
-            result.json.category;
+              result.json.category;
           document
-            .getElementById("restaurant-location")
-            .setAttribute("href", result.json.location);
+              .getElementById("restaurant-location")
+              .setAttribute("href", result.json.location);
           document
-            .getElementById("restaurant-location")
-            .setAttribute("target", "_blank");
+              .getElementById("restaurant-location")
+              .setAttribute("target", "_blank");
           document.querySelector(".rating").dataset.id_restaurant =
-            result.json.id_restaurant;
+              result.json.id_restaurant;
           document.querySelector(".rating").dataset.score = result.json.score;
           activeStars();
 
@@ -148,26 +149,26 @@ function getRestaurant() {
             result.json.images.forEach((image) => {
               $template.querySelector("img").setAttribute("src", image);
               $template.querySelector(".numbertext").textContent = `${
-                result.json.images.indexOf(image) + 1
+                  result.json.images.indexOf(image) + 1
               }/${result.json.images.length}`;
               let $clone = document.importNode($template, true);
               $fragment.appendChild($clone);
             });
             document
-              .querySelector(".slideshow-container")
-              .appendChild($fragment);
+                .querySelector(".slideshow-container")
+                .appendChild($fragment);
           } else {
             $template
-              .querySelector("img")
-              .setAttribute("src", "/images/restaurant-default.jpg");
+                .querySelector("img")
+                .setAttribute("src", "/images/restaurant-default.jpg");
           }
           $fragment = document.createDocumentFragment();
 
           result.json.schedules.forEach((day) => {
             $templateShedule.querySelector("th").textContent =
-              getSpanishWeekDay(day.day);
+                getSpanishWeekDay(day.day);
             $templateShedule.querySelector(
-              "td"
+                "td"
             ).textContent = `${day.startTime} - ${day.endTime}`;
             let $clone = document.importNode($templateShedule, true);
             $fragment.appendChild($clone);
@@ -197,7 +198,7 @@ function getRestaurant() {
         console.log(error);
       });
   } else {
-    window.location = "/src/view/mainMenu.html";
+    //window.location = "/src/view/mainMenu.html";
   }
 }
 
@@ -268,7 +269,7 @@ function getComments() {
         console.log(error);
       });
   } else {
-    window.location = "/src/view/mainMenu.html";
+    //window.location = "/src/view/mainMenu.html";
   }
 }
 
