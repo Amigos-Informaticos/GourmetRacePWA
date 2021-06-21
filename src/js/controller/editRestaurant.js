@@ -7,7 +7,7 @@ async function loadCategories() {
   const response = await connection.send("get", "categories");
   const categories = response.json;
 
-  categories.forEach((category) => {
+  categories.forEach(category => {
     $template.querySelector("option").value = category.id_category;
     $template.querySelector("option").textContent = category.category;
     let $clone = document.importNode($template, true);
@@ -86,7 +86,9 @@ async function editRestaurant(e) {
   let name = d.getElementById("nameInput").value,
     category = d.getElementById("categoryInput").value,
     location = d.getElementById("locationInput").value,
-    price = $("input:radio[name=price]:checked").val();
+    price = $("input:radio[name=price]:checked").val(),
+  idRestaurant = localStorage.getItem("idRestaurant");
+  
   const payload = {
     name,
     category,
@@ -104,7 +106,7 @@ async function editRestaurant(e) {
   );
   response
     .then((success) => {
-      if (success.status == 200) {
+      if (success.status === 200) {
         Swal.fire({
           icon: "success",
           title: "Restaurante modificado con exito",

@@ -3,6 +3,6 @@ if ("serviceWorker" in navigator) {
 		console.log("Registrado");
 		console.log(e);
 	}).catch((error) => {
-		console.error(error)
+		console.error(error);
 	});
 }
