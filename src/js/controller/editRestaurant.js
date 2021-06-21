@@ -139,7 +139,5 @@ document.addEventListener("click", async (e) => {
     window.location = "/src/view/mainMenu.html";
   } else if(e.target.matches("#btnCancel")){
     window.location = "/src/view/restaurantInfo.html";
-
   }
-  console.log("Elemento clickeado", e.target);
 });
