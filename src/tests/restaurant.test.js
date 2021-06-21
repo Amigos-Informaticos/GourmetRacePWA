@@ -68,10 +68,10 @@ test("Edit restaurant", done => {
 				Connection.token = response.json.token;
 				let idCommensal = response.json.id;
 				let payloadRestaurant = {
-					"name": "La Cocina de Jay 777",
+					"name": "La Cocina de Jay",
 					"category": 7,
 					"location": "https://g.page/lacocinadeljey?share",
-					"price": 1
+					"price": 2
 				};
 				connection.send(
 					"post",
@@ -127,5 +127,6 @@ test("Get restaurant by id", done => {
 	connection.send("get", `restaurants/${parameters.restaurant_id}`)
 		.then(jsonResponse => {
 			callback(jsonResponse);
-		});
+		})
+		.catch(error => done(error));
 });

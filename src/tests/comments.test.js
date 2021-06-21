@@ -85,7 +85,6 @@ test("Delete a comment", done => {
 	} else {
 		fail("Id comment is null");
 		done();
-
 	}
 
 	function callback(data) {
