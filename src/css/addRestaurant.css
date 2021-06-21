@@ -5,7 +5,8 @@
     padding: 0;
 }
 body { 
-    background: #FFFFFF url("/images/gradientLinesBackgroundOrange.jpg") no-repeat;
+    background: #FFFFFF url("/images/gradientLinesBackgroundOrange.jpg") repeat-y;
+    background-clip: border-box;
     background-size: cover;
 }
 .wrapper {
