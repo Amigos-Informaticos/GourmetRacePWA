@@ -14,6 +14,7 @@ test("Register restaurant", done => {
 			done(error);
 		}
 	}
+
 	const payload = {
 		email: "edsonmidguet@gmail.com",
 		password: "beethoven"
@@ -21,7 +22,7 @@ test("Register restaurant", done => {
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	connection.send("post", "login", null, payload)
 		.then(response => {
-			if (response.status === 200){
+			if (response.status === 200) {
 				Connection.token = response.json.token;
 				let idCommensal = response.json.id;
 				let payloadRestaurant = {
@@ -55,6 +56,7 @@ test("Edit restaurant", done => {
 			done(error);
 		}
 	}
+
 	const payload = {
 		email: "gt@walom.com",
 		password: "password"
@@ -62,7 +64,7 @@ test("Edit restaurant", done => {
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	connection.send("post", "login", null, payload)
 		.then(response => {
-			if (response.status === 200){
+			if (response.status === 200) {
 				Connection.token = response.json.token;
 				let idCommensal = response.json.id;
 				let payloadRestaurant = {
@@ -78,15 +80,15 @@ test("Edit restaurant", done => {
 					payloadRestaurant
 				).then(newResponse => {
 					callback(newResponse);
-				}).catch(error=>{
+				}).catch(error => {
 					done(error);
 				});
 			} else {
 				fail(`Login error ${response.status}`);
 			}
 		}).catch(errorLogin => {
-			done(errorLogin);
-		});
+		done(errorLogin);
+	});
 });
 test("Get restaurants", done => {
 	function callback(data) {
@@ -97,6 +99,7 @@ test("Get restaurants", done => {
 			done(error);
 		}
 	}
+
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	connection.send("get", "restaurants")
 		.then(jsonResponse => {
@@ -106,9 +109,9 @@ test("Get restaurants", done => {
 test("Get restaurant by id", done => {
 	function callback(data) {
 		try {
-			if (data.status == 200){
+			if (data.status == 200) {
 				expect(data.status).toBe(200);
-			} else if (data.stats == 404){
+			} else if (data.stats == 404) {
 				expect(data.status).toBe(404);
 			}
 			done();
@@ -116,6 +119,7 @@ test("Get restaurant by id", done => {
 			done(error);
 		}
 	}
+
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const parameters = {
 		restaurant_id: 5
@@ -124,26 +128,4 @@ test("Get restaurant by id", done => {
 		.then(jsonResponse => {
 			callback(jsonResponse);
 		});
-});
-test("Get comments from restaurant", done => {
-	function callback(data) {
-		try {
-			if (data.status == 200){
-				expect(data.status).toBe(200);
-			} else if (data.stats == 404){
-				expect(data.status).toBe(204);
-			}
-			done();
-		} catch (error) {
-			done(error);
-		}
-	}
-	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
-	const parameters = {
-		restaurant_id: 5
-	}
-	connection.send("get", `restaurants/${parameters.restaurant_id}/comments`)
-		.then(jsonResponse => {
-			callback(jsonResponse);
-		}).catch(error => {done(error)});
 });

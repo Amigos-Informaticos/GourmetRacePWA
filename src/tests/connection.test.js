@@ -1,16 +1,6 @@
 const Connection = require("../js/connection/connection");
 
 test("Register user test", done => {
-	const expectedResponseRegister = {
-		"status": 201,
-		"json": {
-			"email": "alexisao@correo.com",
-			"password": "2b204a3f1042643e480fdd655e0e65c0",
-			"username": "alexisaO",
-			"status": true,
-			"is_owner": false
-		}
-	}
 	const userAlreadyRegistered = {"status": 409}
 
 	function callback(data) {
@@ -49,6 +39,7 @@ test("Search registered user test", done => {
 			"is_owner": false
 		}]
 	}
+
 	function callback(data) {
 		try {
 			expect(data).toStrictEqual(expectedResponse);
@@ -57,6 +48,7 @@ test("Search registered user test", done => {
 			done(error);
 		}
 	}
+
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const parameters = {
 		username: "alexisaO",
