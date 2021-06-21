@@ -43,7 +43,7 @@ test("Make a comment", done => {
 		password: "password"
 	};
 
-	const commentPayload = {
+	let commentPayload = {
 		comment: "Comentario de prueba unitaria",
 		date: "2021-06-10"
 	};
