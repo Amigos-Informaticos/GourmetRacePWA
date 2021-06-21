@@ -1,7 +1,7 @@
 #login {
 	position: absolute;
 	top: 0;
-	background: linear-gradient(var(--orange-color) 50%, white);
+	background: linear-gradient(var(--orange-color) 60%, white);
 	height: 100vh;
 	width: 100vw;	
 }

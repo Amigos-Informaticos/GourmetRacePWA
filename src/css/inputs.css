@@ -8,8 +8,10 @@
 	border-radius: 2px;
 	font-family: Roboto, "DejaVu Sans", serif;
 	height: 2em;
+	font-size: 1em;
 	display: block;
 	transition: 0.5s;
+	margin: 0;
 }
 
 .normalInput:focus {
@@ -47,7 +49,8 @@
 .button {
 	font-weight: bold;
 	width: var(--button-width);
-	margin: 20px auto;
+	margin: 40px auto;
+	height: 3em;
 }
 
 .button-flex {
