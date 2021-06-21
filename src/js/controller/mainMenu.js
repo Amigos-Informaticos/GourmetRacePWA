@@ -141,7 +141,7 @@ async function getRestaurants(category = "", name = "") {
 }
 
 $("#restaurantButton").click(function () {
-  window.location = "/src/view/register.html";
+  window.location = "register.html";
 });
 
 function executeRating(stars) {
@@ -184,7 +184,7 @@ document.addEventListener("dblclick", (e) => {
     if (e.target.dataset.id_restaurant) {
       console.log("Box clicked");
       localStorage.setItem("idRestaurant", e.target.dataset.id_restaurant);
-      window.location = "/src/view/restaurantInfo.html";
+      window.location = "restaurantInfo.html";
     }
   }
 });

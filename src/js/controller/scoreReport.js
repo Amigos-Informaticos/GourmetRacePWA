@@ -19,11 +19,11 @@ function getRestaurant() {
             icon: "error",
             title: "Fallo en la conexión",
             text: `Ocurrió un problema al comunicarse con el servidor.`,
-          }).then((window.location = "/src/view/mainMenu.html"));
+          }).then((window.location = "mainMenu.html"));
           console.log(error);
         });
     } else {
-      window.location = "/src/view/mainMenu.html";
+      window.location = "mainMenu.html";
     }
   }
   
@@ -106,14 +106,14 @@ function getRestaurant() {
             text: `Ocurrió un problema al comunicarse con el servidor.`,
           }).then(() => {
             localStorage.clear();
-            window.location = "/";
+            window.location = "../..";
           });
         } else if (success.status >= 400 && success.status < 500){
           Swal.fire({
               icon: "warning",
               title: "Ocurrio un error en la solicitud con el servidor",                
             }).then(() => {                
-              window.location = "/src/view/restaurantInfo.html";
+              window.location = "restaurantInfo.html";
             });        
 
       }
@@ -132,6 +132,6 @@ function getRestaurant() {
   
   document.addEventListener("click", e => {
     if(e.target.matches(".header h1")){
-      window.location = "/src/view/mainMenu.html";
+      window.location = "mainMenu.html";
     }
-  })
+  });

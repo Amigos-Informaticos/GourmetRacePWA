@@ -13,7 +13,7 @@ function validateLogin() {
 }
 
 $("#registerButton").click(function () {
-	window.location="./src/view/register.html";
+	window.location="register.html";
 });
 
 $("#loginForm").submit(function(event) {
@@ -27,7 +27,7 @@ $("#loginForm").submit(function(event) {
 					window.localStorage.setItem("token", success.json.token);
 					window.localStorage.setItem("idCommensal", success.json.id);
 					window.localStorage.setItem("cookie", Connection.cookies);
-					window.location = "src/view/mainMenu.html";
+					window.location = "mainMenu.html";
 				} else if(success.status === 406){					
 					Swal.fire({
 						icon: "warning",

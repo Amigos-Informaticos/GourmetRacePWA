@@ -1,5 +1,5 @@
 $("#cancelButton").click(function () {
-	window.location = "/";
+	window.location = "../..";
 });
 
 document.querySelector("#registerForm").onsubmit = function (e){	

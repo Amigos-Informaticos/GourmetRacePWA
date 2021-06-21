@@ -19,11 +19,11 @@ function getRestaurant() {
           icon: "error",
           title: "Fallo en la conexión",
           text: `Ocurrió un problema al comunicarse con el servidor.`,
-        }).then((window.location = "/src/view/mainMenu.html"));
+        }).then((window.location = "mainMenu.html"));
         console.log(error);
       });
   } else {
-    window.location = "/src/view/mainMenu.html";
+    window.location = "mainMenu.html";
   }
 }
 
@@ -106,7 +106,7 @@ async function getViews() {
           text: `Ocurrió un problema al comunicarse con el servidor.`,
         }).then(() => {
           localStorage.clear();
-          window.location = "/";
+          window.location = "../..";
         });
       }
     })
@@ -123,6 +123,6 @@ getViews();
 
 document.addEventListener("click", e => {
   if(e.target.matches(".header h1")){
-    window.location = "/src/view/mainMenu.html";
+    window.location = "mainMenu.html";
   }
-})
+});

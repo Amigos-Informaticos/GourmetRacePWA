@@ -421,7 +421,7 @@ async function rateRestaurant(e) {
             text: "Su sesión ha caducado, por favor vuelva a iniciar sesión",
           }).then(()=> {
             localStorage.clear();
-            window.location = "../.."
+            window.location = "../..";
           });
         } else if (success.status >= 400 && success.status < 500) {
           Swal.fire({

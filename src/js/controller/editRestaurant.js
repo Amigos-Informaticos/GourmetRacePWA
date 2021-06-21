@@ -73,11 +73,11 @@ function getRestaurant() {
           icon: "error",
           title: "Fallo en la conexión",
           text: `Ocurrió un problema al comunicarse con el servidor.`,
-        }).then((window.location = "/src/view/mainMenu.html"));
+        }).then((window.location = "mainMenu.html"));
         console.log(error);
       });
   } else {
-    window.location = "/src/view/mainMenu.html";
+    window.location = "mainMenu.html";
   }
 }
 
@@ -117,7 +117,7 @@ async function editRestaurant(e) {
           icon: "warning",
           title: "Sesión caducada",
           text: "Su sesión ha caducado, por favor vuelva a iniciar sesión",
-        }).then((window.location = "/"));
+        }).then(window.location = "../..");
       }
       console.log(success);
     })
@@ -136,8 +136,8 @@ document.addEventListener("click", async (e) => {
   if (e.target.matches("#btnEditRestaurant")) {
     editRestaurant(e);
   } else if (e.target.matches(".header h1")) {
-    window.location = "/src/view/mainMenu.html";
+    window.location = "mainMenu.html";
   } else if(e.target.matches("#btnCancel")){
-    window.location = "/src/view/restaurantInfo.html";
+    window.location = "restaurantInfo.html";
   }
 });
