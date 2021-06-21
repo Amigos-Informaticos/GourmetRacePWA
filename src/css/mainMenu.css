@@ -1,6 +1,8 @@
 ﻿* {
+    border: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: Roboto, Verdana;
+    font-family: Roboto, Verdana, serif;
 }
 
 body {
@@ -88,6 +90,10 @@ body {
 
 .aside-2{
     background: #C4C4C4;      
+}
+
+.categories > li {
+    cursor: pointer;
 }
 
 .navOptions {

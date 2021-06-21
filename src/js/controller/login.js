@@ -1,6 +1,6 @@
 async function login(email, password) {
 	const payload = {email, password};
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const response = await connection.send("post", "login", null, payload);	
 	return response;
 }
@@ -17,7 +17,6 @@ $("#registerButton").click(function () {
 });
 
 $("#loginForm").submit(function(event) {
-	console.log("click");
 	let email = $("#emailInput").val();
 	let password = $("#passwordInput").val();
 	if (validateLogin()) {
@@ -48,7 +47,6 @@ $("#loginForm").submit(function(event) {
 						title: "Error en la petición",
 						text: `Ocurrió un problema al comunicarse con el servidor. Verifique su conexión`
 					})
-
 				}
 			}).catch(() => {
 				Swal.fire({

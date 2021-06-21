@@ -8,7 +8,7 @@ document.querySelector("#registerForm").onsubmit = function (e){
 	username = $("#usernameInput").val();
 	e.preventDefault();
 	if (validateRegister()) {
-		register(email, password, username).then(success => {
+		modifyCommensal(email, password, username).then(success => {
             console.log(success);
 			if(success.status === 200) {
 				Swal.fire({
@@ -58,10 +58,16 @@ function validateRegister() {
 		commensal.isPassword(password);
 }
 
-async function register(email, password, username) {
+async function modifyCommensal(email, password, username) {
     let idCommensal = localStorage.getItem("idCommensal");
-	const payload = {id:idCommensal, password, username};
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const payload = {
+		"email": email,
+		"username": username,
+		"password": password,
+		"status": true,
+	}
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
+	Connection.token = localStorage.getItem("token");
 	const response = await connection.send("post", `commensals/${idCommensal}`, null, payload);	
 	return response;
 	

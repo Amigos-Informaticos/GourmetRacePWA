@@ -26,7 +26,7 @@ test("Register user test", done => {
 		}
 	}
 
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const payload = {
 		"email": "gerardo@hotmail.com",
 		"password": "beethoven",
@@ -57,7 +57,7 @@ test("Search registered user test", done => {
 			done(error);
 		}
 	}
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const parameters = {
 		username: "alexisaO",
 		email: "alexisao@correo.com"
@@ -69,7 +69,7 @@ test("Search registered user test", done => {
 });
 
 test("Get registered user test", done => {
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	let payload = {
 		email: "alexisao@correo.com",
 		password: "password"

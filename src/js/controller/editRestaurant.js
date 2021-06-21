@@ -3,7 +3,7 @@ async function loadCategories() {
     $template = document.getElementById("template-category").content,
     $fragment = document.createDocumentFragment();
 
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   const response = await connection.send("get", "categories");
   const categories = response.json;
 
@@ -21,7 +21,7 @@ async function loadServiceType() {
     $template = document.querySelector("#template-serviceType").content,
     $fragment = document.createDocumentFragment();
 
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   const response = await connection.send("get", "service_types");
   const services = response.json;
 
@@ -41,7 +41,7 @@ function getRestaurant() {
       $btnEditRestaurant = document.getElementById("btnEditRestaurant"),
       $fragment = document.createDocumentFragment();
     const connection = new Connection(
-      "http://amigosinformaticos.ddns.net:42066"
+      "https://amigosinformaticos.ddns.net:42066"
     );
     const response = connection.send("get", `restaurants/${idRestaurant}`);
 
@@ -93,7 +93,7 @@ async function editRestaurant(e) {
     location,
     price,
   };
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   Connection.token = localStorage.getItem("token");
   console.log(payload);
   const response = connection.send(

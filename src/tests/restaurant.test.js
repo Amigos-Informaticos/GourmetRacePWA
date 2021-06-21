@@ -18,7 +18,7 @@ test("Register restaurant", done => {
 		email: "edsonmidguet@gmail.com",
 		password: "beethoven"
 	}
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	connection.send("post", "login", null, payload)
 		.then(response => {
 			if (response.status == 200){
@@ -42,32 +42,50 @@ test("Register restaurant", done => {
 		});
 });
 /*test("Edit restaurant", done => {
-	const payload = {
-		email: "edsonmidguet@gmail.com",
-		password: "beethoven"
+	function callback(response) {
+		console.log(response);
+		try {
+			if (response.status === 201) {
+				expect(response.json.id).toBe(true);
+			} else {
+				expect(response.status).toBe(409);
+			}
+			done();
+		} catch (error) {
+			done(error);
+		}
 	}
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const payload = {
+		email: "gt@walom.com",
+		password: "password"
+	}
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	connection.send("post", "login", null, payload)
 		.then(response => {
+			console.log(response);
 			if (response.status == 200){
-				Connection.token = response["json"]["token"];
+				Connection.token = response.json.token;
 				let idCommensal = response.json.id;
 				let payloadRestaurant = {
-					"name": "Comida corrida La Vecina",
-					"category": 12,//Comida mexicana
-					"service_type": 1,//Servicio de mesa
-					"registered_by": 112,
-					"location": "www.paginaweb.com",
-					"price": 1//$
+					"name": "La Cocina de Jay 777",
+					"category": 7,
+					"location": "https://g.page/lacocinadeljey?share",
+					"price": 1
 				}
 				connection.send(
 					"post",
-					"restaurants",
+					`restaurants/${5}`,
 					null,
 					payloadRestaurant
-				).then(newResponse => callback(newResponse));
+				).then(newResponse => {
+					callback(newResponse)
+				}).catch(error=>{
+					done(error);
+				});
+			} else {
+				fail(`Login error ${response.status}`);
 			}
-		});
+		}).catch(errorLogin => {done(errorLogin)});
 });*/
 test("Get restaurants", done => {
 	function callback(data) {
@@ -78,7 +96,7 @@ test("Get restaurants", done => {
 			done(error);
 		}
 	}
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	connection.send("get", "restaurants")
 		.then(jsonResponse => {
 			callback(jsonResponse);
@@ -97,7 +115,7 @@ test("Get restaurant by id", done => {
 			done(error);
 		}
 	}
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const parameters = {
 		restaurant_id: 5
 	}
@@ -119,7 +137,7 @@ test("Get comments from restaurant", done => {
 			done(error);
 		}
 	}
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const parameters = {
 		restaurant_id: 5
 	}
