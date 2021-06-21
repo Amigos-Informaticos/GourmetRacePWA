@@ -63,9 +63,9 @@ async function getCommensal() {
   Connection.token = localStorage.getItem("token");
   const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   const response = await connection.send("get", `commensals/${idCommensal}`);
-  if(response.status == 200){
+  if(response.status === 200){
     document.getElementById("username-text").textContent = response.json.username;
-  } else if (response.status == 419) {
+  } else if (response.status === 419) {
     Swal.fire({
       icon: "warning",
       title: "Sesión caducada. Por favor, vuelva a iniciar sesión.",
@@ -100,16 +100,16 @@ function getRestaurant() {
             $button.setAttribute("id", "btnClaimRestaurant");
             $button.dataset.id_restaurant = result.json.id_restaurant;
             $button.textContent = "Reclamar";
-            $padre = document.querySelector(".main-information");
-            $sibling = document.querySelector(".rating");
-            $padre.insertBefore($button, $sibling);
+            let $parent = document.querySelector(".main-information");
+            let $sibling = document.querySelector(".rating");
+            $parent.insertBefore($button, $sibling);
           }
           if (result.json.claimer == localStorage.getItem("idCommensal")) {
             let $button = document.createElement("button");
             $button.setAttribute("id", "btnViewsReport");
             $button.dataset.id_restaurant = result.json.id_restaurant;
             $button.textContent = "Ver reporte de vistas";
-            $padre = document.querySelector(".main-information");
+            $parent = document.querySelector(".main-information");
             $sibling = document.querySelector(".rating");
             $padre.insertBefore($button, $sibling);
           }
@@ -245,7 +245,6 @@ function getComments() {
               comment.username;
             $template.querySelector(".comment-username").dataset.id_commensal =
               comment.commensal_id;
-            $template;
             let date = new Date(comment.date);
             date.setDate(date.getDate() + 1);
             $template.querySelector(".comment-date").textContent =
@@ -565,7 +564,7 @@ function claimRestaurant(event) {
   Connection.token = localStorage.getItem("token");
   let idRestaurant = document.querySelector("#btnClaimRestaurant").dataset
     .id_restaurant;
-  idCommensal = localStorage.getItem("idCommensal");
+  let idCommensal = localStorage.getItem("idCommensal");
 
   const payload = {
     restaurant_id: idRestaurant,

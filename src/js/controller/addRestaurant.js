@@ -1,6 +1,3 @@
-$(document).ready(loadCategories);
-$(document).ready(loadServiceType);
-
 $("#header").click(function(){
   console.log("Clicked");
   window.location = "/src/view/mainMenu.html";
@@ -61,7 +58,7 @@ async function registerRestaurant(name, category, location, serviceType, price, 
     const payload = {
       name: name, category:category, location:location, service_type: serviceType, price, registered_by:idCommensal
     }; 
-    const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+    const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
     Connection.token = localStorage.getItem("token");
     Connection.cookies = localStorage.getItem("cookie");
     const response = await connection.send("post", "restaurants", null, payload);	
@@ -73,9 +70,9 @@ async function loadCategories(){
   $template = document.getElementById("template-category").content,
   $fragment = document.createDocumentFragment();
 
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   const response = await connection.send("get", "categories");
-  const categories = response.json;  
+  const categories = response.json;
 
   categories.forEach(category => {
     $template.querySelector("option").value = category.id_category;
@@ -91,7 +88,7 @@ async function loadServiceType(){
   $template = document.querySelector("#template-serviceType").content,
   $fragment = document.createDocumentFragment();
 
-  const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+  const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   const response = await connection.send("get", "service_types");
   const services = response.json;
 
@@ -103,3 +100,7 @@ async function loadServiceType(){
   })
   $serviceTypeSelect.appendChild($fragment);
 }
+document.addEventListener("DOMContentLoaded", function (event) {
+    loadCategories();
+    loadServiceType();
+});

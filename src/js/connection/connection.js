@@ -126,7 +126,6 @@ class Connection {
 		return {status: response.status};
 	}
 }
-
 try {
 	module.exports = Connection;
 } catch (error) {

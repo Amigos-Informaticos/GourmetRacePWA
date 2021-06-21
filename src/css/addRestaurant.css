@@ -2,13 +2,11 @@
     box-sizing: border-box;    
     font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
-    
+    padding: 0;
 }
-
 body { 
     background: #FFFFFF url("/images/gradientLinesBackgroundOrange.jpg") no-repeat;
     background-size: cover;
-    
 }
 .wrapper {
     display: flex;
