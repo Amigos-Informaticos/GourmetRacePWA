@@ -68,5 +68,3 @@ test("Make a comment", done => {
 		})
 		.catch(error => done(error));
 });
-
-t
