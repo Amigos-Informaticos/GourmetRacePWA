@@ -127,5 +127,6 @@ test("Get restaurant by id", done => {
 	connection.send("get", `restaurants/${parameters.restaurant_id}`)
 		.then(jsonResponse => {
 			callback(jsonResponse);
-		});
+		})
+		.catch(error => done(error));
 });
