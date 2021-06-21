@@ -79,10 +79,7 @@ async function getRestaurants(category = "", name = "") {
         .querySelector("img")
         .setAttribute(
           "src",
-          restaurant.images[0]
-            ? restaurant.images[0]
-            : "/images/restaurant-default.jpg"
-        );
+          restaurant.images[0] ? restaurant.images[0] : "/images/restaurant-default.jpg");
       $template.querySelector("img").setAttribute("alt", "Restaurant");
       $template.querySelector("img").dataset.id_restaurant =
         restaurant.id_restaurant;
