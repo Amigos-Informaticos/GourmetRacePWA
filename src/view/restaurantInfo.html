@@ -45,8 +45,6 @@
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            <br>            
-            <!-- The dots/circles -->
             <div class="dots-container">
                 <span class="dot" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
@@ -54,6 +52,7 @@
                 <span class="dot" onclick="currentSlide(4)"></span>
                 <span class="dot" onclick="currentSlide(5)"></span>
             </div>
+            <!-- Main information -->
             <div class="main-information divider">
                 <span id="restaurant-name"></span>
                 <button id="btnEditRestaurant">Editar</button>
@@ -67,7 +66,7 @@
                 <span id="restaurant-categorie" class="restaurant-categorie"></span>
                 <span id="restaurant-price" class="restaurant-price"></span>
             </div>
-            <br>
+            <!-- Service type section-->
             <div class="serviceType-container divider">
 			</div>
             <template class = "template-serviceType">
@@ -75,7 +74,7 @@
                     <span class="serviceType"></span>
                 </div>
             </template>
-            <br>
+            <!-- Contact information-->
             <div class="contactInformation-container divider">
                 <a id="restaurant-location" class="restaurant-location">
                     <i class="material-icons">location_on</i>
@@ -91,16 +90,15 @@
                     </tr>
                 </template>
             </div>
-            <br>
+            <!-- Comment container -->
             <div class="comments-container divider">
             </div>
             <template id="template-comment-box" class="template-comment-box">
                 <div class="comment-box">
                     <div class="comment-box-header">
                         <p class="comment-username"></p>
-                        <p id="comment-delete-button" class="comment-delete-button"><i class="comment-delete-icon fas fa-trash-alt" style="display: none"></i></p>
+                        <p class="comment-delete-button"><i class="comment-delete-icon fas fa-trash-alt" style="display: none"></i></p>
                     </div>
-                    <p class="comment-username"></p>
                     <p class="comment-date"></p>
                     <p class="comment-text"></p>
                 </div>
