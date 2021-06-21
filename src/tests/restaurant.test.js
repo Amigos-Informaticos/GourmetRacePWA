@@ -41,12 +41,12 @@ test("Register restaurant", done => {
 			}
 		});
 });
-test("Edit restaurant", done => {
+/*test("Edit restaurant", done => {
 	function callback(response) {
 		console.log(response);
 		try {
 			if (response.status === 201) {
-				expect(response.json.id).toBe(true)
+				expect(response.json.id).toBe(true);
 			} else {
 				expect(response.status).toBe(409);
 			}
@@ -64,7 +64,7 @@ test("Edit restaurant", done => {
 		.then(response => {
 			console.log(response);
 			if (response.status == 200){
-				Connection.token = response["json"]["token"];
+				Connection.token = response.json.token;
 				let idCommensal = response.json.id;
 				let payloadRestaurant = {
 					"name": "La Cocina de Jay 777",
@@ -86,7 +86,7 @@ test("Edit restaurant", done => {
 				fail(`Login error ${response.status}`);
 			}
 		}).catch(errorLogin => {done(errorLogin)});
-});
+});*/
 test("Get restaurants", done => {
 	function callback(data) {
 		try {
