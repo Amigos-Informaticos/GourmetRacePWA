@@ -4,6 +4,7 @@ const url = "https://amigosinformaticos.ddns.net:42066";
 const idRestaurant = 5;
 let token = null;
 let idComment = null;
+let idCommensal = null;
 
 test("Get comments from restaurant", done => {
 	function callback(data) {
@@ -35,6 +36,7 @@ test("Make a comment", done => {
 			idComment = data["json"]["comment_id"];
 		}
 		expect(data.status).toBe(201);
+		done();
 	}
 
 	const connection = new Connection(url);
@@ -51,11 +53,12 @@ test("Make a comment", done => {
 		.then(response => {
 			Connection.token = response["json"]["token"];
 			token = response["json"]["token"];
-			commentPayload["id_commensal"] = response["json"]["id"];
-
+			commentPayload.id_commensal = response["json"]["id"];
+			idCommensal = response["json"]["id"];
 			connection.send(
 				"POST",
 				`restaurants/${idRestaurant}/comments`,
+				null,
 				commentPayload
 			)
 				.then(response => {
@@ -67,9 +70,10 @@ test("Make a comment", done => {
 });
 
 test("Delete a comment", done => {
-	if (idComment !== null) {
+	if (idComment != null) {
 		Connection.token = token;
 		const connection = new Connection(url);
+		connection.headers = {id_commensal: idCommensal};
 		connection.send(
 			"DELETE",
 			`restaurants/${idRestaurant}/comments/${idComment}`
@@ -85,7 +89,7 @@ test("Delete a comment", done => {
 	}
 
 	function callback(data) {
-		expect(data).toBe(200);
+		expect(data.status).toBe(200);
 		done();
 	}
 });
