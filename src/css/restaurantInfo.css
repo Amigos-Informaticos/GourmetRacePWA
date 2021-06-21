@@ -32,25 +32,29 @@ body {
     background: #FF6C1D;
     align-items: baseline;
     justify-content: center;
-    flex: 1 0 10%;
+    flex: 1 0 auto;
 }
 
 .main-information {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
+    padding-bottom: 1.5rem;
 }
 
 .serviceType-container {
   display: flex;
   flex-flow: row wrap;
-  width: 100%;  
+  flex: 1 1 auto;
+  justify-content: flex-start;  
+  width: 100%;
+  padding-bottom: 1.5rem;
 
 }
 
 .serviceType-container > * {
   font-size: 0.9rem; 
-  flex: 0 0 20%;
+  flex: 1 1 25%;  
 }
 
 .contactInformation-container {
@@ -94,18 +98,59 @@ body {
 
 .comment-form-container {
   display: flex;
+  flex-flow:row  wrap;
   background-color: #e0e0e0;
   justify-content: center;
   align-items: center;
   flex-shrink: 1;
-  width: 100%;  
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+.username-container {
+  display: flex;  
+  justify-content: flex-start;
+  width: 80%;
+}
+
+.rate-restaurant-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.rate_star {
+  cursor: pointer;
+  color: #FF6C1D;
 }
 
 .comment-form {
   display: flex;
   flex-flow: row wrap;
-  flex:0 0 50%;
+  flex:0 1 80%;
   justify-content: flex-end;  
+}
+
+.comment-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.image-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.image-buttons > button {  
+  flex:0 1 50%;
+
 }
 
 .comment-form > *{  
@@ -117,23 +162,30 @@ body {
   resize: none;
 }
 
-.comment-form button {
-  flex:0 0 25%;
-  padding: .5vh;  
-  
-}
+
 
 #gourmet-race {
     font-size: 5vw;
     color: #fff;
+    cursor: pointer;
 }
 
 #restaurant-name {
     font-size: 4vw;
     flex-basis: 100%;
 }
-#restaurant-location {
+
+#restaurant-categorie{
+  margin-right: 1rem;
+  
+}
+#restaurant-location{
     flex-basis: 100%;
+    color: #FF6C1D;
+}
+
+#restaurant-location i{  
+  color: #000;
 }
 #restaurant-telephone {
     flex: 1 1 50%;
@@ -162,10 +214,11 @@ body {
     flex-basis: 100%;
 }
 /* Slideshow container */
-.slideshow-container {
-    max-width: 1000px;
+.slideshow-container {    
+    max-width: 80%;    
+    display: flex;
     position: relative;
-    margin: auto;
+    margin: auto;    
   }
 
   .divider {
@@ -184,13 +237,19 @@ body {
     top: 50%;
     width: auto;
     margin-top: -22px;
-    padding: 16px;
-    color: white;
+    padding: 3px;
+    color: #ff6c1d;
+    background-color: rgba(255, 255, 255, 0.8);
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
+  }
+
+  .prev:active, .next:active{
+    color: #fff;
+    background-color: rgba(255, 108, 29, 0.8);
   }
 
   /* Position the "next button" to the right */
@@ -201,9 +260,10 @@ body {
 
   /* Number text (1/3 etc) */
 .numbertext {
-    color: #f2f2f2;
+    color: #ffffff;
     font-size: 12px;
     padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.25);    
     position: absolute;
     top: 0;
   }

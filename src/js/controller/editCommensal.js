@@ -8,11 +8,12 @@ document.querySelector("#registerForm").onsubmit = function (e){
 	username = $("#usernameInput").val();
 	e.preventDefault();
 	if (validateRegister()) {
-		register(email, password, username).then(success => {			
-			if(success.status === 201) {
+		modifyCommensal(email, password, username).then(success => {
+            console.log(success);
+			if(success.status === 200) {
 				Swal.fire({
 					icon: 'success',
-					title: 'Comensal registrado con exito'					
+					title: 'Comensal modificado con exito'					
 				});				
 			} else if (success.status === 409) {
 				Swal.fire({
@@ -57,10 +58,17 @@ function validateRegister() {
 		commensal.isPassword(password);
 }
 
-async function register(email, password, username) {
-	const payload = {email, password, username};
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
-	const response = await connection.send("post", "commensals", null, payload);	
+async function modifyCommensal(email, password, username) {
+    let idCommensal = localStorage.getItem("idCommensal");
+	const payload = {
+		"email": email,
+		"username": username,
+		"password": password,
+		"status": true,
+	}
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
+	Connection.token = localStorage.getItem("token");
+	const response = await connection.send("post", `commensals/${idCommensal}`, null, payload);	
 	return response;
 	
 }
