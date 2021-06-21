@@ -72,8 +72,8 @@ async function getCommensal() {
       showConfirmButton: true,
       timer: 3000,
     }).then(swalPromise => {
-      // localStorage.clear();
-      // window.location = "/";
+      localStorage.clear();
+      window.location = "../..";
     });
   }
 }
@@ -105,7 +105,7 @@ function getRestaurant() {
             let $sibling = document.querySelector(".rating");
             $parent.insertBefore($button, $sibling);
           }
-          if (result.json.claimer === localStorage.getItem("idCommensal")) {
+          if (result.json.claimer === Number.parseInt(localStorage.getItem("idCommensal"))) {
             let $button = document.createElement("button");
             $button.setAttribute("id", "btnViewsReport");
             $button.dataset.id_restaurant = result.json.id_restaurant;
@@ -114,7 +114,7 @@ function getRestaurant() {
             let $sibling = document.querySelector(".rating");
             $parent.insertBefore($button, $sibling);
           }
-          if (result.json.claimer == localStorage.getItem("idCommensal")) {
+          if (result.json.claimer === Number.parseInt(localStorage.getItem("idCommensal"))) {
             let $button = document.createElement("button");
             $button.setAttribute("id", "btnScoreReport");
             $button.dataset.id_restaurant = result.json.id_restaurant;
@@ -122,15 +122,6 @@ function getRestaurant() {
             $parent = document.querySelector(".main-information");
             let $sibling = document.querySelector(".rating");
             $parent.insertBefore($button, $sibling);
-          }
-          if (result.json.claimer == localStorage.getItem("idCommensal")) {
-            let $button = document.createElement("button");
-            $button.setAttribute("id", "btnDeleteRestaurant");
-            $button.dataset.id_restaurant = result.json.id_restaurant;
-            $button.textContent = "Ver reporte de puntuaciones";
-            $padre = document.querySelector(".main-information");
-            $sibling = document.querySelector(".rating");
-            $padre.insertBefore($button, $sibling);
           }
           document.getElementById("restaurant-categorie").textContent =
               result.json.category;
@@ -194,11 +185,10 @@ function getRestaurant() {
           icon: "error",
           title: "Fallo en la conexión",
           text: `Ocurrió un problema al comunicarse con el servidor.`,
-        }).then((window.location = "/src/view/mainMenu.html"));
-        console.log(error);
+        }).then((window.location = "mainMenu.html"));
       });
   } else {
-    //window.location = "/src/view/mainMenu.html";
+    window.location = "mainMenu.html";
   }
 }
 
@@ -220,6 +210,7 @@ function getComments() {
     let idRestaurant = localStorage.getItem("idRestaurant"),
       $fragment = document.createDocumentFragment(),
       idCommensal = localStorage.getItem("idCommensal");
+    const $template = document.getElementById("template-comment-box").content;
     const connection = new Connection(
       "https://amigosinformaticos.ddns.net:42066"
     );
@@ -227,15 +218,11 @@ function getComments() {
       "get",
       `restaurants/${idRestaurant}/comments`
     );
-
-    const $template = document.getElementById("template-comment-box").content;
-
     response
       .then((success) => {
         console.log(success);
-        if (success.status == 200) {
+        if (success.status === 200) {
           const comments = success.json;
-          console.log(comments);
           comments.forEach((comment) => {
             $template.querySelector(".comment-box").dataset.id_comment =
               comment.comment_id;
@@ -252,9 +239,9 @@ function getComments() {
               date.toLocaleDateString("es-US");
             $template.querySelector(".comment-text").textContent =
               comment.comment;
-            if (comment.commensal_id == idCommensal) {
+            if (comment.commensal_id === Number.parseInt(idCommensal)) {
               $template.querySelector(".comment-delete-icon").style.display =
-                "inherit";
+                "block";
               $template.querySelector(
                 ".comment-delete-icon"
               ).dataset.id_comment = comment.comment_id;
@@ -269,7 +256,7 @@ function getComments() {
         console.log(error);
       });
   } else {
-    //window.location = "/src/view/mainMenu.html";
+    window.location = "mainMenu.js";
   }
 }
 
@@ -383,9 +370,7 @@ async function rateRestaurant(e) {
   const starClassInactive = "rate_star far fa-star";
   let rateValue = 0,
     i = 0;
-
   let ratingStars = [...document.getElementsByClassName("rate_star")].reverse();
-
   while (i < ratingStars.length) {
     if (ratingStars[i].className == starClassActive) {
       rateValue = Number.parseInt(ratingStars[i].dataset.value);
@@ -393,9 +378,7 @@ async function rateRestaurant(e) {
     }
     i++;
   }
-
   rateValue = (rateValue * 10) / 5;
-
   if (rateValue > 0) {
     const connection = new Connection(
       "https://amigosinformaticos.ddns.net:42066"
@@ -423,7 +406,6 @@ async function rateRestaurant(e) {
       null,
       params
     );
-
     response
       .then((success) => {
         if (success.status == 201) {
@@ -437,7 +419,10 @@ async function rateRestaurant(e) {
             icon: "warning",
             title: "Sesión caducada",
             text: "Su sesión ha caducado, por favor vuelva a iniciar sesión",
-          }).then((window.location = "/"));
+          }).then(()=> {
+            localStorage.clear();
+            window.location = "../..";
+          });
         } else if (success.status >= 400 && success.status < 500) {
           Swal.fire({
             icon: "error",
@@ -452,13 +437,12 @@ async function rateRestaurant(e) {
           title: "Ocurrió un error al comunicarse con el servidor",
           text: `Error: ${error}`,
         });
-        console.log(error);
+        window.location = "../..";
       });
-    console.log(response);
   }
 }
 
-async function commentRestaurant(params) {
+async function commentRestaurant(payload) {
   const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
   Connection.token = localStorage.getItem("token");
   Connection.cookies = localStorage.getItem("cookie");
@@ -467,7 +451,7 @@ async function commentRestaurant(params) {
     "post",
     `restaurants/${idRestaurant}/comments`,
     null,
-    params
+    payload
   );
   return response;
 }
@@ -495,31 +479,44 @@ $("#comment-form").submit(function () {
     (currentDate.getMonth() + 1) +
     "/" +
     currentDate.getDate();
-
-  const params = {
+  const payload = {
     id_commensal: idCommensal,
     comment: comment,
     date: currentDate,
   };
-
   if (validateCommentForm(comment, idCommensal)) {
     if (localStorage.getItem("idRestaurant")) {
-      commentRestaurant(params)
-        .then((response) => {
-          if (response.status == 201) {
+      commentRestaurant(payload)
+        .then(response => {
+          console.log(response);
+          if (response.status === 201) {
             Swal.fire({
               icon: "success",
               title: "Comentario guardado con exito",
               showConfirmButton: false,
-              timer: 1500,
+              timer: 3000,
             });
-          } else if (response.status == 419) {
+            let $templateCommentBox = document.getElementById("template-comment-box").content;
+            $templateCommentBox.querySelector(".comment-box").setAttribute("id", response.json.comment_id);
+            $templateCommentBox.querySelector(".comment-box").dataset.comment_id = response.json.comment_id;
+            $templateCommentBox.querySelector(".comment-delete-button").dataset.comment_id = response.json.comment_id;
+            $templateCommentBox.querySelector(".comment-username").textContent = response.json.username;
+            $templateCommentBox.querySelector(".comment-username").dataset.id_commensal =
+                comment.commensal_id;
+            let date = new Date(comment.date);
+            date.setDate(date.getDate() + 1);
+            $templateCommentBox.querySelector(".comment-date").textContent = date.toLocaleDateString("es-US");
+            $templateCommentBox.querySelector(".comment-text").textContent = response.json.comment;
+            const $commentBox = document.importNode($templateCommentBox, true);
+            const $commentsContainer = document.querySelector(".comments-container");
+            $commentsContainer.appendChild($commentBox);
+          } else if (response.status === 419) {
             Swal.fire({
               icon: "warning",
               title: "Sesión caducada. Por favor, vuelva a iniciar sesión."
             }).then(() => {
               localStorage.clear();
-              window.location = "/";
+              window.location = "../..";
             });
           }
         })
@@ -529,9 +526,10 @@ $("#comment-form").submit(function () {
             title: "Fallo en la conexión",
             text: `Ocurrió un problema al comunicarse con el servidor.`,
           });
+          console.log(error);
         });
     } else {
-      window.location = "/src/view/mainMenu.html";
+      window.location = "mainMenu.html";
     }
   } else {
     Swal.fire({
@@ -603,7 +601,7 @@ function claimRestaurant(event) {
               timer: 5000,
             }).then(() => {
               localStorage.clear();
-              window.location = "/";
+              window.location = "../..";
             });
           } else if (success.status >= 400 && success.status < 500) {
             Swal.fire({
@@ -658,7 +656,7 @@ async function uploadImage(e) {
         true
       );
       response.then((success) => {
-        if (success.status == 202) {
+        if (success.status === 202) {
           const reader = new FileReader();
           reader.onload = (e) => {
             Swal.fire({
@@ -668,7 +666,7 @@ async function uploadImage(e) {
             });
           };
           reader.readAsDataURL(file);
-        } else if (success.status == 401 || success.status == 419) {
+        } else if (success.status === 401 || success.status === 419) {
           Swal.fire({
             icon: "warning",
             title: "Sesión caducada. Por favor, vuelva a iniciar sesión.",
@@ -676,7 +674,7 @@ async function uploadImage(e) {
             timer: 3000,
           }).then(() => {
             localStorage.clear();
-            window.location = "/";
+            window.location = "../..";
           });
         }
         console.log(success);
@@ -707,17 +705,14 @@ document.addEventListener("click", async (e) => {
   } else if (e.target.matches("#btnClaimRestaurant")) {
     claimRestaurant(e);
   } else if (e.target.matches("#btnEditRestaurant")) {
-    window.location = "/src/view/editRestaurant.html";
+    window.location = "editRestaurant.html";
   } else if (e.target.matches("#btnViewsReport")) {
-    window.location = "/src/view/viewsReport.html";
+    window.location = "viewsReport.html";
   } else if (e.target.matches("#btnScoreReport")) {
-    window.location = "/src/view/scoreReport.html";
+    window.location = "scoreReport.html";
   } else if (e.target.matches("#gourmet-race")) {
-    window.location = "/src/view/mainMenu.html";
+    window.location = "mainMenu.html";
   } else if (e.target.matches("#btnAddImage")) {
     uploadImage(e);
-  } else if (e.target.matches("#btnDeleteRestaurant")){
-      deleteRestaurant(e);
   }
-  console.log("Elemento clickeado", e.target);
 });

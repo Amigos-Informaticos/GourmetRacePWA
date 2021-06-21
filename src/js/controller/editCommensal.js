@@ -1,5 +1,5 @@
 $("#cancelButton").click(function () {
-	window.location = "/";
+	window.location = "mainMenu.html";
 });
 
 document.querySelector("#registerForm").onsubmit = function (e){	
@@ -65,7 +65,7 @@ async function modifyCommensal(email, password, username) {
 		"username": username,
 		"password": password,
 		"status": true,
-	}
+	};
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	Connection.token = localStorage.getItem("token");
 	const response = await connection.send("post", `commensals/${idCommensal}`, null, payload);	

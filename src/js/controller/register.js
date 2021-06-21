@@ -1,5 +1,5 @@
 $("#cancelButton").click(function () {
-	window.location = "../../index.html";
+	window.location = "../..";
 });
 
 document.querySelector("#registerForm").onsubmit = function (e){	
@@ -59,7 +59,7 @@ function validateRegister() {
 
 async function register(email, password, username) {
 	const payload = {email, password, username};
-	const connection = new Connection("http://amigosinformaticos.ddns.net:42066");
+	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const response = await connection.send("post", "commensals", null, payload);	
 	return response;
 	

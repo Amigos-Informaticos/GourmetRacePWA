@@ -5,7 +5,8 @@
     padding: 0;
 }
 body { 
-    background: #FFFFFF url("/images/gradientLinesBackgroundOrange.jpg") no-repeat;
+    background: #FFFFFF url("/images/gradientLinesBackgroundOrange.jpg") repeat-y;
+    background-clip: border-box;
     background-size: cover;
 }
 .wrapper {
@@ -13,8 +14,6 @@ body {
     flex-flow: row wrap;
     font-weight: bold;
     text-align: center;
-    border: 1px solid black;
-    
 }
 
 .wrapper > * {
@@ -41,7 +40,7 @@ body {
     mix-blend-mode: lighten;
     border-radius: 5px;
     width: 50%;
-    flex: 1 1 auto;    
+    flex: 0 1 50%;    
 }
 
 .restaurantHeader {
@@ -49,7 +48,7 @@ body {
     color: #FFFFFF;
     margin-top: 0;
     padding: 0 1em;
-    font-size: 2vw;
+    font-size: 1rem;
 }
 
 .restaurantBody {
@@ -70,7 +69,7 @@ body {
 .form-flex {
     display: flex;
     flex-flow: row wrap;
-    flex: 1 1 auto;
+    flex: 0 1 50%;
     justify-content: center;
     align-items: center;
     align-content: center;

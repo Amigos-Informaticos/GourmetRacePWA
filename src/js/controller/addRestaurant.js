@@ -1,6 +1,6 @@
 $("#header").click(function(){
   console.log("Clicked");
-  window.location = "/src/view/mainMenu.html";
+  window.location = "mainMenu.html";
 });
 
 $("#restaurantForm").submit(function (event) {
@@ -19,7 +19,7 @@ $("#restaurantForm").submit(function (event) {
 					icon: "success",
 					title: "Restaurante registrado con exito",
 				});
-				window.location("mainMenu.html");
+				window.location = "mainMenu.html";
 			} else if (success.status === 400) {
 				Swal.fire({
 					icon: "warning",
@@ -36,7 +36,7 @@ $("#restaurantForm").submit(function (event) {
 					title: "Sesión expirada",
 					text: `Por favor, vuelva a iniciar sesión para continuar.`
 				});
-				window.location = "/";
+				window.location = "../..";
 			} else {
 				Swal.fire({
 					icon: "error",

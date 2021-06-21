@@ -68,27 +68,3 @@ test("Make a comment", done => {
 		})
 		.catch(error => done(error));
 });
-
-test("Delete a comment", done => {
-	if (idComment != null) {
-		Connection.token = token;
-		const connection = new Connection(url);
-		connection.headers = {id_commensal: idCommensal};
-		connection.send(
-			"DELETE",
-			`restaurants/${idRestaurant}/comments/${idComment}`
-		)
-			.then(response => {
-				callback(response);
-			})
-			.catch(error => done(error));
-	} else {
-		fail("Id comment is null");
-		done();
-	}
-
-	function callback(data) {
-		expect(data.status).toBe(200);
-		done();
-	}
-});
