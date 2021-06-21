@@ -49,6 +49,7 @@ test("Search registered user test", done => {
 			"is_owner": false
 		}]
 	}
+
 	function callback(data) {
 		try {
 			expect(data).toStrictEqual(expectedResponse);
@@ -57,6 +58,7 @@ test("Search registered user test", done => {
 			done(error);
 		}
 	}
+
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	const parameters = {
 		username: "alexisaO",
