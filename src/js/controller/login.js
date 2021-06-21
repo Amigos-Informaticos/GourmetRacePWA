@@ -13,7 +13,7 @@ function validateLogin() {
 }
 
 $("#registerButton").click(function () {
-	window.location="register.html";
+	window.location="./src/view/register.html";
 });
 
 $("#loginForm").submit(function(event) {
