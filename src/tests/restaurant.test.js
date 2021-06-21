@@ -46,7 +46,7 @@ test("Edit restaurant", done => {
 		console.log(response);
 		try {
 			if (response.status === 200) {
-				expect(response.json.id).toBe(200);
+				expect(response.status).toBe(200);
 			} else {
 				expect(response.status).toBe(409);
 			}
