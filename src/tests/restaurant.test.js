@@ -5,7 +5,7 @@ test("Register restaurant", done => {
 		console.log(response);
 		try {
 			if (response.status === 201) {
-				expect(response.json.id).toBe(true)
+				expect(response.json.id).toBe(true);
 			} else {
 				expect(response.status).toBe(409);
 			}
@@ -17,12 +17,12 @@ test("Register restaurant", done => {
 	const payload = {
 		email: "edsonmidguet@gmail.com",
 		password: "beethoven"
-	}
+	};
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	connection.send("post", "login", null, payload)
 		.then(response => {
-			if (response.status == 200){
-				Connection.token = response["json"]["token"];
+			if (response.status === 200){
+				Connection.token = response.json.token;
 				let idCommensal = response.json.id;
 				let payloadRestaurant = {
 					"name": "Comida corrida La Vecina",
@@ -31,7 +31,7 @@ test("Register restaurant", done => {
 					"registered_by": 112,
 					"location": "www.paginaweb.com",
 					"price": 1//$
-				}
+				};
 				connection.send(
 					"post",
 					"restaurants",
@@ -41,12 +41,12 @@ test("Register restaurant", done => {
 			}
 		});
 });
-/*test("Edit restaurant", done => {
+test("Edit restaurant", done => {
 	function callback(response) {
 		console.log(response);
 		try {
-			if (response.status === 201) {
-				expect(response.json.id).toBe(true);
+			if (response.status === 200) {
+				expect(response.status).toBe(200);
 			} else {
 				expect(response.status).toBe(409);
 			}
@@ -58,12 +58,11 @@ test("Register restaurant", done => {
 	const payload = {
 		email: "gt@walom.com",
 		password: "password"
-	}
+	};
 	const connection = new Connection("https://amigosinformaticos.ddns.net:42066");
 	connection.send("post", "login", null, payload)
 		.then(response => {
-			console.log(response);
-			if (response.status == 200){
+			if (response.status === 200){
 				Connection.token = response.json.token;
 				let idCommensal = response.json.id;
 				let payloadRestaurant = {
@@ -71,22 +70,24 @@ test("Register restaurant", done => {
 					"category": 7,
 					"location": "https://g.page/lacocinadeljey?share",
 					"price": 1
-				}
+				};
 				connection.send(
 					"post",
-					`restaurants/${5}`,
+					`restaurants/5`,
 					null,
 					payloadRestaurant
 				).then(newResponse => {
-					callback(newResponse)
+					callback(newResponse);
 				}).catch(error=>{
 					done(error);
 				});
 			} else {
 				fail(`Login error ${response.status}`);
 			}
-		}).catch(errorLogin => {done(errorLogin)});
-});*/
+		}).catch(errorLogin => {
+			done(errorLogin);
+		});
+});
 test("Get restaurants", done => {
 	function callback(data) {
 		try {
